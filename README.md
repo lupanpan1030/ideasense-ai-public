@@ -13,39 +13,67 @@ This repository is a **public-safe snapshot** of that product: the application
 shell, architecture, API shape, data contracts, and maintainability practices —
 without the private production repository, prompts, or question banks.
 
+**Live:** [ideasenseai.com](https://www.ideasenseai.com) · **See output without signing up:** [Sample report](https://www.ideasenseai.com/en/sample-report) · [Sample workspace](https://www.ideasenseai.com/en/sample) · [Case study](docs/case-study/00-overview.md)
+
+[![CI](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml/badge.svg)](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
+
+## Architecture at a Glance
+
+```mermaid
+flowchart LR
+    U["Browser · Next.js workspace UI<br/>chat · context board · stage gate · reports"]
+    API["FastAPI orchestration<br/>auth · projects · chat · assessment · reports<br/>stage runtime · prompt runtime · scoring"]
+    DB[("PostgreSQL — state authority + RLS<br/>projects · messages · assessments<br/>reports · background_jobs")]
+    W["Background worker<br/>extraction · stage summary<br/>finalize · verification · report gen"]
+    LLM["LLM task runtime<br/>prompt registry · provider routing<br/>parser · fallback · mutation class"]
+    P["Providers<br/>OpenAI-compatible · Gemini · Bedrock"]
+
+    U -->|"POST /chat/stream"| API
+    API -->|"SSE stream + control events"| U
+    API <--> DB
+    DB -.->|"background_jobs"| W
+    W <--> DB
+    API --> LLM
+    W --> LLM
+    LLM --> P
+```
+
+The hard part is not calling a model — it is constraining model output inside
+deterministic product state, stage-gate confirmation, and auditable artifacts.
+Full walkthrough in [02-architecture-overview.md](docs/case-study/02-architecture-overview.md).
+
+## For Reviewers
+
+If you are evaluating this as a portfolio project, the highest-signal pieces are:
+
+- **AI workflow governance** — a task-specific prompt registry with provider routing, parser contracts, and explicit mutation boundaries. ([03-ai-runtime.md](docs/case-study/03-ai-runtime.md))
+- **Deterministic state contracts** — a stage engine + Stage Gate that stop the AI from silently advancing project state. ([04-state-and-data-contract.md](docs/case-study/04-state-and-data-contract.md))
+- **SSE + worker latency split** — visible streaming on the request path, slow work moved to background jobs. ([05-latency-case-study.md](docs/case-study/05-latency-case-study.md))
+- **Public-export leak gate** — CI checks help prevent production prompts/IP from entering the public snapshot. ([06-security-reliability-delivery.md](docs/case-study/06-security-reliability-delivery.md))
+
+**5-minute path:** open the [sample report](https://www.ideasenseai.com/en/sample-report) → skim [00-overview.md](docs/case-study/00-overview.md) → read the [architecture overview](docs/case-study/02-architecture-overview.md). The full reading order is in [Case Study Reading Path](#case-study-reading-path) below.
+
 ## What This Demonstrates
 
-This snapshot is meant to show the engineering shape behind IdeaSense AI:
-
-- **Next.js workspace UI** for staged assessment, chat, context panels, and
-  report flows.
-- **FastAPI orchestration** for auth, project lifecycle, SSE chat, context
-  extraction, stage gates, DVF scoring, and report generation.
-- **PostgreSQL-backed state contracts** — migrations, seeds, RLS-aware tooling,
-  and confirmed-artifact boundaries that keep probabilistic AI output anchored
-  to deterministic state.
-- **Bounded AI runtime design** — task-specific prompt registry, provider
-  routing, parser/fallback behavior, and explicit mutation boundaries.
-- **Background jobs** for the work that must not block the visible request path.
-- **CI and delivery gates** — backend tests, frontend lint/build, an
-  architecture check, and a public-export leak scan.
+| Engineering problem | How IdeaSense AI handles it |
+| --- | --- |
+| LLM output is probabilistic and can silently drift | Deterministic stage engine + Stage Gate confirmation; the AI cannot advance project state on its own. |
+| Model output must not corrupt project state | Bounded AI runtime: task-specific prompt registry, parser contracts, fallback policy, explicit mutation boundaries. |
+| Chat must feel responsive while real work is slow | SSE for visible streaming; a background worker moves extraction, scoring, and report generation off the request path. |
+| State must be auditable and recoverable | PostgreSQL as source of truth — migrations, RLS, confirmed-artifact and context-version contracts. |
+| Provider availability and cost vary | Multi-provider routing (OpenAI-compatible / Gemini / Bedrock) with per-task chains and fallback. |
+| A public snapshot needs explicit public-export safeguards | CI gates: backend tests, frontend lint/build, an architecture check, and a public-export leak scan. |
 
 ## Public-Safe Boundary
 
-**Included**
-
-- Next.js frontend and FastAPI backend applications.
-- PostgreSQL schema, migrations, and synthetic demo seeds.
-- Public API and architecture documentation, plus the case-study docs.
-- Synthetic prompt placeholders generated for the public export.
-- `resources/question_bank.example.yaml` for the question-bank data shape.
-
-**Excluded**
-
-- Production question banks and production prompt text.
-- Private Master Spec details and internal planning/audit documents.
-- Real reports, dogfooding evidence, and production smoke artifacts.
-- Deployment secrets, provider keys, real users, and real project data.
+| Included | Excluded |
+| --- | --- |
+| Next.js frontend + FastAPI backend apps | Production question banks and prompt text |
+| PostgreSQL schema, migrations, synthetic seeds | Private Master Spec and internal planning/audit docs |
+| Public API, architecture, and case-study docs | Real reports, dogfooding evidence, smoke artifacts |
+| Synthetic prompt placeholders | Deployment secrets, provider keys, real users/data |
+| `resources/question_bank.example.yaml` (shape only) | — |
 
 The public demo can build and boot on synthetic content. It does **not**
 represent production assessment quality, scoring method, interview script, or
