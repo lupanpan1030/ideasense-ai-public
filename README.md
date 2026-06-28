@@ -69,25 +69,40 @@ The highest-signal technical sections are:
 ## Architecture at a Glance
 
 ```mermaid
-flowchart LR
-    U["Browser · Next.js workspace UI<br/>chat · context board · stage gate · reports"]
-    API["FastAPI orchestration<br/>auth · projects · chat · assessment · reports<br/>stage runtime · prompt runtime · scoring"]
-    DB[("PostgreSQL — state authority + RLS<br/>projects · messages · assessments<br/>reports · background_jobs")]
-    W["Background worker<br/>extraction · stage summary<br/>finalize · verification · report gen"]
-    LLM["LLM task runtime<br/>prompt registry · provider routing<br/>parser · fallback · mutation class"]
-    P["Providers<br/>OpenAI-compatible · Gemini · Bedrock"]
+flowchart TD
+    UI["Browser / Next.js workspace<br/>chat · context board · stage gate · reports"]
+    API["FastAPI orchestration<br/>/api/v1 routes · auth · projects · chat · reports"]
+    Workflow["Deterministic workflow layer<br/>stage runtime · permissions · scoring"]
+    DB[("PostgreSQL + RLS<br/>projects · project_runtime · project_states<br/>conversation_messages<br/>project_stage_assessments<br/>project_reports")]
+    Queue[("background_jobs queue")]
+    Worker["Background worker<br/>extract · summarize · finalize<br/>verify claims · generate reports"]
+    Prompt["Bounded AI runtime<br/>task registry · parser contracts<br/>fallback policy · mutation classes"]
+    Providers["Provider chain<br/>OpenAI-compatible APIs<br/>OpenAI · DeepSeek · Qwen<br/>Gemini · Bedrock"]
 
-    U -->|"POST /chat/stream"| API
-    API -->|"SSE stream + control events"| U
-    API <--> DB
-    DB -.->|"background_jobs"| W
-    W <--> DB
-    API --> LLM
-    W --> LLM
-    LLM --> P
+    UI -->|"POST /api/v1/chat/stream"| API
+    API -.->|"SSE tokens + control events"| UI
+    API --> Workflow
+    Workflow --> DB
+    Workflow --> Queue
+    Queue -->|"poll + claim"| Worker
+    Worker --> DB
+    Workflow --> Prompt
+    Worker --> Prompt
+    Prompt --> Providers
+
+    classDef ui fill:#eef6ff,stroke:#2563eb,color:#0f172a;
+    classDef api fill:#f8fafc,stroke:#64748b,color:#0f172a;
+    classDef state fill:#ecfdf5,stroke:#059669,color:#0f172a;
+    classDef worker fill:#fff7ed,stroke:#ea580c,color:#0f172a;
+    classDef ai fill:#f5f3ff,stroke:#7c3aed,color:#0f172a;
+    class UI ui;
+    class API,Workflow api;
+    class DB,Queue state;
+    class Worker worker;
+    class Prompt,Providers ai;
 ```
 
-The important boundary is between model output and product state. The model may produce candidate text or structured output, but the application decides whether that output is valid, where it may be stored, and whether it is allowed to change the project’s stage.
+The important boundary is between model output and product state. The model may produce candidate text or structured output, but the application decides whether that output is valid, where it may be stored, and whether it is allowed to change the project’s stage. The worker does not receive database pushes; it claims queued `background_jobs` and writes artifacts back through controlled backend paths.
 
 Full walkthrough: [02-architecture-overview.md](docs/case-study/02-architecture-overview.md).
 
