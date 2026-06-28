@@ -108,9 +108,49 @@ Full walkthrough: [02-architecture-overview.md](docs/case-study/02-architecture-
 
 ## How IdeaSense Remembers Context
 
-![Layered context memory diagram](docs/assets/readme/ideasense-context-memory.svg)
+IdeaSense does not treat memory as a vector store or raw chat replay. It promotes conversation into versioned product state. Open each layer to see where the system draws the boundary between model output, user confirmation, and durable artifacts.
 
-IdeaSense does not treat memory as a vector store or raw chat replay. It promotes conversation into versioned product state. Direct user answers can update `project_states.state_json`; AI-suggested or uncertain fields can sit in `state_meta.pending_confirm` until the user accepts, edits, or rejects them. Stage summaries then become durable `project_stage_assessments` only after a Stage Gate confirmation against the current context version, and final reports are generated from confirmed artifacts.
+<details open>
+<summary><strong>1. Conversation</strong> — volatile input</summary>
+
+User answers and assistant turns stay visible in `conversation_messages`, but they are not automatically trusted as durable product state.
+
+</details>
+
+<details>
+<summary><strong>2. Extraction + guards</strong> — candidate structured fields</summary>
+
+Extraction maps free-form answers to controlled schema paths. Direct user answers can update `project_states.state_json`; uncertain AI-suggested values are held back for confirmation.
+
+</details>
+
+<details>
+<summary><strong>3. pending_confirm</strong> — field-level user review</summary>
+
+AI-suggested or ambiguous fields can sit in `state_meta.pending_confirm` until the user accepts, edits, or rejects them. Accepting promotes the value into structured state; rejecting drops it.
+
+</details>
+
+<details>
+<summary><strong>4. project_states</strong> — versioned product memory</summary>
+
+`project_states` stores `state_json`, `state_meta`, and `state_version`. The version boundary prevents users from confirming stale summaries after the context has changed.
+
+</details>
+
+<details>
+<summary><strong>5. Stage Gate</strong> — stage-level confirmation</summary>
+
+Stage summaries become durable `project_stage_assessments` only after the user confirms the current context version. The AI can propose a summary, but it cannot silently advance the project stage.
+
+</details>
+
+<details>
+<summary><strong>6. Final artifacts</strong> — auditable report output</summary>
+
+Context cards and `project_reports` are generated from confirmed stage artifacts and carry the state version they were generated from, including assumptions, unknowns, and evidence gaps.
+
+</details>
 
 Detailed state contract: [04-state-and-data-contract.md](docs/case-study/04-state-and-data-contract.md).
 
