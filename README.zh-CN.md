@@ -106,6 +106,14 @@ flowchart TD
 
 完整说明：[02-architecture-overview.md](docs/case-study/02-architecture-overview.md)。
 
+## IdeaSense 如何记住上下文
+
+![分层上下文记忆图](docs/assets/readme/ideasense-context-memory.svg)
+
+IdeaSense 的“记忆”不是向量库，也不是简单回放聊天记录。它会把对话逐步提升为带版本边界的产品状态。确定性的用户回答可以写入 `project_states.state_json`；AI 建议或不确定字段会先放在 `state_meta.pending_confirm`，等待用户 accept、edit 或 reject。阶段摘要只有在用户基于当前 context version 通过 Stage Gate 确认后，才会成为持久化的 `project_stage_assessments`，最终报告再从这些 confirmed artifacts 生成。
+
+详细状态合同：[04-state-and-data-contract.md](docs/case-study/04-state-and-data-contract.md)。
+
 ## 这个项目展示了什么
 
 | 产品/工程问题 | IdeaSense AI 的处理方式 |

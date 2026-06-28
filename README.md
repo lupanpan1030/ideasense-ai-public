@@ -106,6 +106,14 @@ The important boundary is between model output and product state. The model may 
 
 Full walkthrough: [02-architecture-overview.md](docs/case-study/02-architecture-overview.md).
 
+## How IdeaSense Remembers Context
+
+![Layered context memory diagram](docs/assets/readme/ideasense-context-memory.svg)
+
+IdeaSense does not treat memory as a vector store or raw chat replay. It promotes conversation into versioned product state. Direct user answers can update `project_states.state_json`; AI-suggested or uncertain fields can sit in `state_meta.pending_confirm` until the user accepts, edits, or rejects them. Stage summaries then become durable `project_stage_assessments` only after a Stage Gate confirmation against the current context version, and final reports are generated from confirmed artifacts.
+
+Detailed state contract: [04-state-and-data-contract.md](docs/case-study/04-state-and-data-contract.md).
+
 ## What This Demonstrates
 
 | Product/engineering problem | How IdeaSense AI handles it |
