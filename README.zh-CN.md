@@ -1,19 +1,60 @@
-# IdeaSense AI — 公开安全案例研究
+# IdeaSense AI
 
-IdeaSense AI 是一个面向早期软件创业者和学生团队的 AI 创业评估助手。它不是继续生成开放式聊天内容，而是把一个想法讨论约束进一个可以推进、确认、评分和复盘的流程：
+**一个 AI 创业评估助手，把粗糙想法转成结构化、可审阅的评估案例。**
+
+IdeaSense AI 帮助早期软件创业者和学生团队从“我有一个想法”推进到具体评估：产品是什么、面向谁、哪些假设仍然薄弱，以及这个想法在 desirability、viability、feasibility 三个维度上如何评分。
+
+核心设计判断很简单：
+
+> **AI 提议，产品状态裁决。**
+
+助手可以提问、抽取上下文、起草评估内容。但它不能静默推进项目、覆盖已确认上下文，也不能把不确定的模型输出直接写入持久化产品状态，除非通过确定性检查。
 
 ```text
 project -> staged interview -> context extraction -> stage gate confirmation -> DVF scoring -> report
 ```
 
-这个仓库是该产品的**公开安全快照**：展示应用外壳、架构形态、API 形状、数据合同和可维护性实践，但不公开私有生产仓库、生产 prompts 或生产问题库。
+这个仓库是该产品的**公开安全快照**。它包含应用外壳、架构形态、API 形状、数据库合同、CI 检查和 case-study 文档。它**不包含**私有生产仓库、生产 prompts、真实问题库、真实用户数据、secrets 或内部规划文档。
 
-**在线体验：** [ideasenseai.com](https://www.ideasenseai.com) · **无需注册查看输出：** [示例报告](https://www.ideasenseai.com/en/sample-report) · [示例工作区](https://www.ideasenseai.com/en/sample) · [案例研究](docs/case-study/00-overview.md)
+**在线产品：** [ideasenseai.com](https://www.ideasenseai.com)
+
+**无需注册查看输出：** [示例报告](https://www.ideasenseai.com/en/sample-report) · [示例工作区](https://www.ideasenseai.com/en/sample) · [案例研究](docs/case-study/00-overview.md)
 
 [![CI](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml/badge.svg)](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 **语言：** [English](README.md) · 中文
+
+**License：** Apache 2.0
+
+## 为什么做这个项目
+
+很多 AI 产品 demo 停在“模型能回答问题”。对这个产品来说，这不够。
+
+对于创业评估助手，真正困难的是产品控制问题：
+
+- 系统到底从 founder 那里学到了什么？
+- 哪些内容已经由用户确认，哪些仍然只是推断？
+- 项目什么时候允许进入下一阶段？
+- 如何阻止流畅的模型回复污染持久化状态？
+- 如何生成一份有用、可追踪、足够可复盘的评估报告？
+
+IdeaSense AI 把 assessment 当成 workflow，而不是自由聊天。模型有价值，但它被 stage contracts、parser contracts、显式 mutation rules 和 confirmation gates 约束。
+
+## 从这里开始
+
+如果你是 reviewer，最快路径是：
+
+1. 打开 [示例报告](https://www.ideasenseai.com/en/sample-report)，先看这个 workflow 最终产出的 artifact。
+2. 快速浏览 [00-overview.md](docs/case-study/00-overview.md)，了解公开安全范围和阅读地图。
+3. 阅读 [02-architecture-overview.md](docs/case-study/02-architecture-overview.md)，理解主系统流程。
+
+最有信号量的技术部分是：
+
+- **AI workflow governance** — 按任务拆分的 prompt registry、provider routing、parser contract、fallback policy 和显式 mutation boundary。([03-ai-runtime.md](docs/case-study/03-ai-runtime.md))
+- **Deterministic state contracts** — stage engine 和 Stage Gate，防止 AI 静默推进项目状态。([04-state-and-data-contract.md](docs/case-study/04-state-and-data-contract.md))
+- **Latency split** — SSE 保持聊天路径可见，extraction、scoring 和 report work 进入 background jobs。([05-latency-case-study.md](docs/case-study/05-latency-case-study.md))
+- **Public-export safety** — CI 检查帮助把生产 prompts、私有文档和 secrets 留在公开快照之外。([06-security-reliability-delivery.md](docs/case-study/06-security-reliability-delivery.md))
 
 ## 架构概览
 
@@ -36,39 +77,32 @@ flowchart LR
     LLM --> P
 ```
 
-这个项目的难点不是“调用一个模型”，而是把模型输出约束在确定性的产品状态、Stage Gate 确认和可审计 artifact 之内。完整说明见 [02-architecture-overview.md](docs/case-study/02-architecture-overview.md)。
+关键边界在模型输出和产品状态之间。模型可以生成候选文本或结构化输出，但应用决定这些输出是否有效、可以存到哪里，以及是否允许改变项目阶段。
 
-## 给审阅者
-
-如果你把它作为作品集项目来评估，最值得优先看的部分是：
-
-- **AI workflow governance** — 按任务拆分的 prompt registry、provider routing、parser contract 和显式 mutation boundary。([03-ai-runtime.md](docs/case-study/03-ai-runtime.md))
-- **Deterministic state contracts** — stage engine + Stage Gate，防止 AI 静默推进项目状态。([04-state-and-data-contract.md](docs/case-study/04-state-and-data-contract.md))
-- **SSE + worker latency split** — 可见聊天走 request path 的流式响应，慢任务进入 background jobs。([05-latency-case-study.md](docs/case-study/05-latency-case-study.md))
-- **Public-export leak gate** — CI 检查帮助防止生产 prompts/IP 进入公开快照。([06-security-reliability-delivery.md](docs/case-study/06-security-reliability-delivery.md))
-
-**5 分钟阅读路径：** 打开 [示例报告](https://www.ideasenseai.com/en/sample-report) -> 快速浏览 [00-overview.md](docs/case-study/00-overview.md) -> 阅读 [architecture overview](docs/case-study/02-architecture-overview.md)。完整阅读顺序见下方 [案例研究阅读路径](#案例研究阅读路径)。
+完整说明：[02-architecture-overview.md](docs/case-study/02-architecture-overview.md)。
 
 ## 这个项目展示了什么
 
-| 工程问题 | IdeaSense AI 的处理方式 |
+| 产品/工程问题 | IdeaSense AI 的处理方式 |
 | --- | --- |
-| LLM 输出是概率性的，可能悄悄漂移 | 确定性的 stage engine + Stage Gate 确认；AI 不能自行推进项目状态。 |
-| 模型输出不能污染项目状态 | Bounded AI runtime：按任务声明 prompt registry、parser contract、fallback policy 和显式 mutation boundary。 |
-| 聊天体验需要响应快，但真实工作可能很慢 | SSE 负责可见流式响应；background worker 把 extraction、scoring 和 report generation 移出 request path。 |
-| 状态需要可审计、可恢复 | PostgreSQL 作为事实源：migrations、RLS、confirmed artifact 和 context version 合同。 |
-| provider 可用性和成本会变化 | 多 provider routing（OpenAI-compatible / Gemini / Bedrock），按任务配置 chain 和 fallback。 |
-| 公开快照需要显式 public-export 保护 | CI gates：backend tests、frontend lint/build、architecture check 和 public-export leak scan。 |
+| LLM 输出是概率性的，可能悄悄漂移 | 确定性的 stage engine 和 Stage Gate confirmation 决定项目什么时候可以推进。 |
+| 模型输出不能污染持久化状态 | AI runtime 被 task-specific prompts、parser contracts、fallback policy 和显式 mutation classes 约束。 |
+| 聊天体验要快，但真实工作可能很慢 | request path 用 SSE 做可见流式响应；较慢的 extraction、scoring、report generation 通过 background worker 执行。 |
+| 状态需要可审计、可恢复 | PostgreSQL 是事实源，配合 migrations、RLS、confirmed-artifact contracts 和 context-version contracts。 |
+| provider 可用性、行为和成本会变化 | per-task provider chains 支持 OpenAI-compatible providers、Gemini 和 Bedrock，并带有 fallback behavior。 |
+| 公开作品集仓库需要显式泄漏防护 | CI gates 覆盖 backend tests、frontend lint/build、architecture checks 和 public-export leak scanning。 |
 
 ## 公开安全边界
 
+这个仓库用于展示工程判断，而不是发布私有生产系统。
+
 | 包含 | 不包含 |
 | --- | --- |
-| Next.js 前端 + FastAPI 后端应用 | 生产问题库和生产 prompt 文本 |
-| PostgreSQL schema、migrations、synthetic seeds | 私有 Master Spec 和内部规划/审计文档 |
-| 公开 API、架构和 case-study 文档 | 真实报告、dogfooding 证据、production smoke artifacts |
+| Next.js 前端和 FastAPI 后端应用 | 生产问题库和生产 prompt 文本 |
+| PostgreSQL schema、migrations、synthetic seeds 和 RLS roles | 私有 Master Spec 和内部规划/审计文档 |
+| 公开 API shape、架构文档和 case-study 文档 | 真实报告、dogfooding 证据、production smoke artifacts |
 | 合成 prompt placeholders | 部署 secrets、provider keys、真实用户/数据 |
-| `resources/question_bank.example.yaml`（仅展示数据形状） | - |
+| `resources/question_bank.example.yaml` shape-only example | 私有生产评估方法 |
 
 公开 demo 可以用合成内容 build 和 boot。它**不代表**生产评估质量、评分方法、访谈脚本或 prompt 质量。
 

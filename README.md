@@ -16,13 +16,15 @@ project -> staged interview -> context extraction -> stage gate confirmation -> 
 
 This repository is a **public-safe snapshot** of the product. It includes the application shell, architecture, API shape, database contracts, CI checks, and case-study documentation. It does **not** include the private production repository, production prompts, real question banks, real user data, secrets, or internal planning docs.
 
-**Live product:** [ideasenseai.com](https://www.ideasenseai.com)  
+**Live product:** [ideasenseai.com](https://www.ideasenseai.com)
+
 **See output without signing up:** [Sample report](https://www.ideasenseai.com/en/sample-report) · [Sample workspace](https://www.ideasenseai.com/en/sample) · [Case study](docs/case-study/00-overview.md)
 
 [![CI](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml/badge.svg)](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
-**Languages:** English · [中文](README.zh-CN.md)  
+**Languages:** English · [中文](README.zh-CN.md)
+
 **License:** Apache 2.0
 
 ## Why This Project Exists
@@ -88,7 +90,7 @@ Full walkthrough: [02-architecture-overview.md](docs/case-study/02-architecture-
 | Chat must feel responsive even when real work is slow | The request path uses SSE for visible streaming; slower extraction, scoring, and report generation run through a background worker. |
 | State needs to be auditable and recoverable | PostgreSQL is the source of truth, with migrations, RLS, confirmed-artifact contracts, and context-version contracts. |
 | Provider availability, behavior, and cost vary | Per-task provider chains support OpenAI-compatible providers, Gemini, and Bedrock with fallback behavior. |
-| A public portfolio repo must not leak private IP | CI gates cover backend tests, frontend lint/build, architecture checks, and public-export leak scanning. |
+| A public portfolio repo needs explicit leak safeguards | CI gates cover backend tests, frontend lint/build, architecture checks, and public-export leak scanning. |
 
 ## Public-Safe Boundary
 
