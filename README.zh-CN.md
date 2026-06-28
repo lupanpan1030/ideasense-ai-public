@@ -29,9 +29,11 @@ project -> staged interview -> context extraction -> stage gate confirmation -> 
 
 ## 产品预览
 
-来自公开官网首页的动态预览：
+来自在线产品的公开预览：
 
-[![IdeaSense AI 官网首页产品演示](docs/assets/readme/ideasense-homepage-preview.gif)](https://www.ideasenseai.com/zh)
+| 官网工作流 | 示例报告滚动预览 |
+| --- | --- |
+| [![IdeaSense AI 官网首页产品演示](docs/assets/readme/ideasense-homepage-preview.gif)](https://www.ideasenseai.com/zh) | [![IdeaSense AI 示例报告滚动展示评估章节](docs/assets/readme/ideasense-sample-report-scroll.gif)](https://www.ideasenseai.com/zh/sample-report) |
 
 在线首页：[ideasenseai.com](https://www.ideasenseai.com/zh) · 无需登录页面：[示例报告](https://www.ideasenseai.com/zh/sample-report) · [示例工作区](https://www.ideasenseai.com/zh/sample)
 

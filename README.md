@@ -29,9 +29,11 @@ This repository is a **public-safe snapshot** of the product. It includes the ap
 
 ## Product Preview
 
-Homepage motion preview from the public site:
+Public live surfaces from the product:
 
-[![IdeaSense AI homepage product walkthrough](docs/assets/readme/ideasense-homepage-preview.gif)](https://www.ideasenseai.com)
+| Homepage workflow | Sample report scroll |
+| --- | --- |
+| [![IdeaSense AI homepage product walkthrough](docs/assets/readme/ideasense-homepage-preview.gif)](https://www.ideasenseai.com) | [![IdeaSense AI sample report scrolling through assessment sections](docs/assets/readme/ideasense-sample-report-scroll.gif)](https://www.ideasenseai.com/en/sample-report) |
 
 Live homepage: [ideasenseai.com](https://www.ideasenseai.com) · No-login pages: [Sample report](https://www.ideasenseai.com/en/sample-report) · [Sample workspace](https://www.ideasenseai.com/en/sample)
 
