@@ -18,7 +18,7 @@ project -> staged interview -> context extraction -> stage gate confirmation -> 
 
 **在线产品：** [ideasenseai.com](https://www.ideasenseai.com)
 
-**无需注册查看输出：** [示例报告](https://www.ideasenseai.com/en/sample-report) · [示例工作区](https://www.ideasenseai.com/en/sample) · [案例研究](docs/case-study/00-overview.md)
+**无需注册查看输出：** [示例报告](https://www.ideasenseai.com/zh/sample-report) · [示例工作区](https://www.ideasenseai.com/zh/sample) · [案例研究](docs/case-study/00-overview.md)
 
 [![CI](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml/badge.svg)](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
@@ -26,6 +26,14 @@ project -> staged interview -> context extraction -> stage gate confirmation -> 
 **语言：** [English](README.md) · 中文
 
 **License：** Apache 2.0
+
+## 产品预览
+
+来自在线产品的公开、无需登录 sample 页面：
+
+| 示例报告 | 示例工作区 |
+| --- | --- |
+| [![IdeaSense AI 示例报告，展示 DVF 决策概览](docs/assets/readme/ideasense-sample-report.png)](https://www.ideasenseai.com/zh/sample-report) | [![IdeaSense AI 示例工作区，展示分阶段项目评估流程](docs/assets/readme/ideasense-sample-workspace.png)](https://www.ideasenseai.com/zh/sample) |
 
 ## 为什么做这个项目
 
@@ -45,7 +53,7 @@ IdeaSense AI 把 assessment 当成 workflow，而不是自由聊天。模型有�
 
 如果你是 reviewer，最快路径是：
 
-1. 打开 [示例报告](https://www.ideasenseai.com/en/sample-report)，先看这个 workflow 最终产出的 artifact。
+1. 打开 [示例报告](https://www.ideasenseai.com/zh/sample-report)，先看这个 workflow 最终产出的 artifact。
 2. 快速浏览 [00-overview.md](docs/case-study/00-overview.md)，了解公开安全范围和阅读地图。
 3. 阅读 [02-architecture-overview.md](docs/case-study/02-architecture-overview.md)，理解主系统流程。
 

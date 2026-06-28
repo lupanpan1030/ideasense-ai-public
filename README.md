@@ -27,6 +27,14 @@ This repository is a **public-safe snapshot** of the product. It includes the ap
 
 **License:** Apache 2.0
 
+## Product Preview
+
+Public no-login sample pages from the live product:
+
+| Sample report | Sample workspace |
+| --- | --- |
+| [![IdeaSense AI sample report showing a DVF decision overview](docs/assets/readme/ideasense-sample-report.png)](https://www.ideasenseai.com/en/sample-report) | [![IdeaSense AI sample workspace showing staged project review flow](docs/assets/readme/ideasense-sample-workspace.png)](https://www.ideasenseai.com/en/sample) |
+
 ## Why This Project Exists
 
 A lot of AI product demos stop at “the model can answer questions.” That was not enough for this product.
