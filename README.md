@@ -108,49 +108,41 @@ Full walkthrough: [02-architecture-overview.md](docs/case-study/02-architecture-
 
 ## How IdeaSense Remembers Context
 
-IdeaSense does not treat memory as a vector store or raw chat replay. It promotes conversation into versioned product state. Open each layer to see where the system draws the boundary between model output, user confirmation, and durable artifacts.
+IdeaSense does not treat memory as a vector store or raw chat replay. It promotes conversation into versioned product state, with different paths for direct user answers and uncertain AI suggestions.
 
-<details open>
-<summary><strong>1. Conversation</strong> — volatile input</summary>
+```mermaid
+flowchart LR
+    Chat["1. Conversation"]
+    Extract["2. Extract + guard"]
+    Direct["direct user answers"]
+    Suggest["AI suggestions"]
+    Pending["3. pending_confirm"]
+    State[("4. Versioned state<br/>project_states")]
+    Gate{"5. Stage Gate"}
+    Artifacts[("6. Confirmed artifacts<br/>stage assessments · context cards · reports")]
+    Drop["discard"]
 
-User answers and assistant turns stay visible in `conversation_messages`, but they are not automatically trusted as durable product state.
+    Chat --> Extract
+    Extract --> Direct --> State
+    Extract --> Suggest --> Pending --> State
+    Pending -.-> Drop
+    State --> Gate --> Artifacts
 
-</details>
+    classDef input fill:#eef6ff,stroke:#2563eb,color:#0f172a;
+    classDef review fill:#f5f3ff,stroke:#7c3aed,color:#0f172a;
+    classDef state fill:#ecfdf5,stroke:#059669,color:#0f172a;
+    classDef gate fill:#fff7ed,stroke:#ea580c,color:#0f172a;
+    classDef artifact fill:#fff1f2,stroke:#e11d48,color:#0f172a;
+    classDef drop fill:#f8fafc,stroke:#94a3b8,color:#475569;
+    class Chat,Extract,Direct input;
+    class Suggest,Pending review;
+    class State state;
+    class Gate gate;
+    class Artifacts artifact;
+    class Drop drop;
+```
 
-<details>
-<summary><strong>2. Extraction + guards</strong> — candidate structured fields</summary>
-
-Extraction maps free-form answers to controlled schema paths. Direct user answers can update `project_states.state_json`; uncertain AI-suggested values are held back for confirmation.
-
-</details>
-
-<details>
-<summary><strong>3. pending_confirm</strong> — field-level user review</summary>
-
-AI-suggested or ambiguous fields can sit in `state_meta.pending_confirm` until the user accepts, edits, or rejects them. Accepting promotes the value into structured state; rejecting drops it.
-
-</details>
-
-<details>
-<summary><strong>4. project_states</strong> — versioned product memory</summary>
-
-`project_states` stores `state_json`, `state_meta`, and `state_version`. The version boundary prevents users from confirming stale summaries after the context has changed.
-
-</details>
-
-<details>
-<summary><strong>5. Stage Gate</strong> — stage-level confirmation</summary>
-
-Stage summaries become durable `project_stage_assessments` only after the user confirms the current context version. The AI can propose a summary, but it cannot silently advance the project stage.
-
-</details>
-
-<details>
-<summary><strong>6. Final artifacts</strong> — auditable report output</summary>
-
-Context cards and `project_reports` are generated from confirmed stage artifacts and carry the state version they were generated from, including assumptions, unknowns, and evidence gaps.
-
-</details>
+Under the hood, `project_states` carries `state_json`, `state_meta`, and `state_version`; confirmed artifacts carry the version they were generated from.
 
 Detailed state contract: [04-state-and-data-contract.md](docs/case-study/04-state-and-data-contract.md).
 

@@ -108,49 +108,41 @@ flowchart TD
 
 ## IdeaSense 如何记住上下文
 
-IdeaSense 的“记忆”不是向量库，也不是简单回放聊天记录。它会把对话逐步提升为带版本边界的产品状态。点开每一层，可以看到系统在哪里区分模型输出、用户确认和持久化 artifact。
+IdeaSense 的“记忆”不是向量库，也不是简单回放聊天记录。它会把对话逐步提升为带版本边界的产品状态，并区分确定性的用户回答和不确定的 AI 建议。
 
-<details open>
-<summary><strong>1. Conversation</strong> — volatile input</summary>
+```mermaid
+flowchart LR
+    Chat["1. Conversation"]
+    Extract["2. Extract + guard"]
+    Direct["确定性用户回答"]
+    Suggest["AI 建议"]
+    Pending["3. pending_confirm"]
+    State[("4. Versioned state<br/>project_states")]
+    Gate{"5. Stage Gate"}
+    Artifacts[("6. Confirmed artifacts<br/>stage assessments · context cards · reports")]
+    Drop["丢弃"]
 
-用户回答和 assistant turns 会保留在 `conversation_messages`，但它们不会自动变成可信的产品状态。
+    Chat --> Extract
+    Extract --> Direct --> State
+    Extract --> Suggest --> Pending --> State
+    Pending -.-> Drop
+    State --> Gate --> Artifacts
 
-</details>
+    classDef input fill:#eef6ff,stroke:#2563eb,color:#0f172a;
+    classDef review fill:#f5f3ff,stroke:#7c3aed,color:#0f172a;
+    classDef state fill:#ecfdf5,stroke:#059669,color:#0f172a;
+    classDef gate fill:#fff7ed,stroke:#ea580c,color:#0f172a;
+    classDef artifact fill:#fff1f2,stroke:#e11d48,color:#0f172a;
+    classDef drop fill:#f8fafc,stroke:#94a3b8,color:#475569;
+    class Chat,Extract,Direct input;
+    class Suggest,Pending review;
+    class State state;
+    class Gate gate;
+    class Artifacts artifact;
+    class Drop drop;
+```
 
-<details>
-<summary><strong>2. Extraction + guards</strong> — candidate structured fields</summary>
-
-Extraction 会把自由文本映射到受控 schema paths。确定性的用户回答可以写入 `project_states.state_json`；AI 建议或不确定字段会先被拦下来等待确认。
-
-</details>
-
-<details>
-<summary><strong>3. pending_confirm</strong> — field-level user review</summary>
-
-AI 建议或含糊字段会进入 `state_meta.pending_confirm`，等待用户 accept、edit 或 reject。接受后才会提升到结构化 state；拒绝则丢弃。
-
-</details>
-
-<details>
-<summary><strong>4. project_states</strong> — versioned product memory</summary>
-
-`project_states` 保存 `state_json`、`state_meta` 和 `state_version`。这个 version boundary 可以避免用户在上下文已经变化后确认过期摘要。
-
-</details>
-
-<details>
-<summary><strong>5. Stage Gate</strong> — stage-level confirmation</summary>
-
-阶段摘要只有在用户基于当前 context version 确认后，才会成为持久化的 `project_stage_assessments`。AI 可以提出摘要，但不能静默推进项目阶段。
-
-</details>
-
-<details>
-<summary><strong>6. Final artifacts</strong> — auditable report output</summary>
-
-Context cards 和 `project_reports` 从 confirmed stage artifacts 生成，并带有生成时的 state version，同时保留 assumptions、unknowns 和 evidence gaps。
-
-</details>
+底层实现里，`project_states` 携带 `state_json`、`state_meta` 和 `state_version`；confirmed artifacts 会保留生成时对应的 state version。
 
 详细状态合同：[04-state-and-data-contract.md](docs/case-study/04-state-and-data-contract.md)。
 
