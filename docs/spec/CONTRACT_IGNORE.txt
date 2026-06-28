@@ -1,0 +1,9 @@
+# Internal implementation identifiers intentionally ignored by contract checker.
+# model_config: Pydantic schema configuration, not part of API/DB contract.
+model_config
+# project_stages: Frontend UI constant for stage ordering, not part of API/DB contract.
+project_stages
+# chat_stages: Frontend UI constant for chat stage filtering, not part of API/DB contract.
+chat_stages
+# auth_token_storage_key: Frontend localStorage key constant, not part of API/DB contract.
+auth_token_storage_key

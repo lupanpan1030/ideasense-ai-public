@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+python-dotenv
+PyJWT
+openai
+botocore
+psycopg2
+PyYAML
+resend

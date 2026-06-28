@@ -1,0 +1,12 @@
+{
+  email {$CADDY_EMAIL}
+}
+
+{$CADDY_HOST:localhost} {
+  encode gzip zstd
+
+  @api path /api/v1/*
+  reverse_proxy @api backend:8000
+
+  reverse_proxy frontend:3000
+}

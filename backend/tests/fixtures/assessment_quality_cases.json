@@ -1,0 +1,545 @@
+{
+  "version": "assessment-quality-regression-v1",
+  "cases": [
+    {
+      "id": "strong_founder_validation_tool",
+      "categories": ["strong"],
+      "project": {
+        "title": "Founder Validation Coach",
+        "description": "A staged validation assistant for student founder teams."
+      },
+      "stages": {
+        "problem": {
+          "summary": "Student founder teams lose time because they do not know which customer evidence to collect before building.",
+          "state_json": {
+            "problem": {
+              "one_line": "Student founder teams build too early without a validation brief.",
+              "scenarios": ["Pre-accelerator teams preparing a first MVP."]
+            },
+            "target_user": {
+              "core": "Student founder teams in university accelerators"
+            },
+            "evidence": {
+              "user_interview_count": 12,
+              "key_learnings": ["Teams wanted a clear next experiment before coding."]
+            }
+          },
+          "state_meta": {
+            "answer_meta": {
+              "problem.one_line": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+              "problem.scenarios": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+              "target_user.core": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+              "evidence.user_interview_count": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+              "evidence.key_learnings": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"}
+            }
+          },
+          "missing_paths": [],
+          "verification_summary": {
+            "status": "checked",
+            "supported_claims": 2,
+            "unsupported_claims": 0,
+            "uncertain_claims": 0,
+            "supported_ratio": 1.0,
+            "items": [{"claim": "Student accelerator teams run repeated validation workshops.", "verdict": "supported", "confidence": 0.8}]
+          }
+        },
+        "market": {
+          "summary": "University accelerators can pilot the tool as a cohort support product.",
+          "state_json": {
+            "market_strategy": {
+              "uvp": {"one_line": "Turn founder interviews into a decision-ready validation memo."},
+              "business_model": {"payer_role": "Accelerator program manager", "revenue_model": "Cohort pilot fee"},
+              "go_to_market": {"primary_channels": ["University accelerator pilots"]},
+              "competition": {"competitor_types": ["Generic AI chat", "mentor worksheets"]}
+            }
+          },
+          "state_meta": {
+            "answer_meta": {
+              "market_strategy.uvp.one_line": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+              "market_strategy.business_model.payer_role": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+              "market_strategy.business_model.revenue_model": {"resolution_status": "answered", "claim_type": "estimate", "evidence_level": "E2", "source": "user"},
+              "market_strategy.go_to_market.primary_channels": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+              "market_strategy.competition.competitor_types": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"}
+            }
+          },
+          "missing_paths": [],
+          "verification_summary": {"status": "not_checked", "supported_claims": 0, "unsupported_claims": 0, "uncertain_claims": 0, "items": []}
+        },
+        "tech": {
+          "summary": "A narrow MVP can implement staged interviews, context cards, and report generation with existing stack choices.",
+          "state_json": {
+            "tech_execution": {
+              "product_scope": {"mvp_definition": "Staged interview, stage confirmation, DVF report."},
+              "architecture": {"high_level_components": ["Next.js workspace", "FastAPI backend", "Postgres state"]},
+              "roadmap_risks": {"top_technical_risks": ["LLM output drift"], "risk_mitigation_plan": "Schema checks and report regression tests."}
+            }
+          },
+          "state_meta": {
+            "answer_meta": {
+              "tech_execution.product_scope.mvp_definition": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+              "tech_execution.architecture.high_level_components": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+              "tech_execution.roadmap_risks.top_technical_risks": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+              "tech_execution.roadmap_risks.risk_mitigation_plan": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"}
+            }
+          },
+          "missing_paths": []
+        }
+      },
+      "dvf": {
+        "scoreboard": {"desirability": 84, "viability": 76, "feasibility": 80, "total_score": 80, "decision_band": "go"},
+        "assessment": {
+          "desirability": {"score": 84, "comment": "The case includes a clear student-founder segment and 12 interviews showing the same validation pain.", "subscores": null, "confidence": 0.82},
+          "viability": {"score": 76, "comment": "The buyer and pilot channel are named, while pricing still needs a paid pilot.", "subscores": null, "confidence": 0.72},
+          "feasibility": {"score": 80, "comment": "The MVP scope and core architecture are explicit, with LLM drift handled through regression checks.", "subscores": null, "confidence": 0.78},
+          "total_score": 80
+        }
+      },
+      "dvf_confidence": {"level": "high", "coverage": 84},
+      "key_risks": [{"risk": "Cohort buyers may not convert from pilot interest to paid budget.", "severity": "medium", "likelihood": "medium", "category": "Viability", "mitigation_suggestion": "Run a paid pilot conversation with two program managers."}],
+      "validation_plan": [{"action": "Run a pricing pilot conversation with two accelerator program managers.", "target": "Accelerator buyer", "success_signal": "Two buyers name a budget owner and pilot price range.", "linked_risk": "Paid pilot conversion", "priority": "high", "time_horizon": "14 days"}],
+      "expectations": {
+        "score_ranges": {"desirability": [80, 90], "viability": [70, 82], "feasibility": [76, 86], "total_score": [76, 84]},
+        "decision_confidence": "high",
+        "min_evidence_counts": {"user_confirmed_inputs": 6, "evidence_gaps": 0},
+        "required_action_terms": ["pricing pilot"],
+        "required_gap_terms": [],
+        "forbidden_claims": ["enterprise compliance buyer", "500 paying customers"],
+        "required_source_layers": [{"path": "evidence.user_interview_count", "layer": "user_confirmed_inputs", "evidence_level": "E3"}],
+        "required_verification_verdicts": ["supported"]
+      }
+    },
+    {
+      "id": "weak_generic_ai_app",
+      "categories": ["weak"],
+      "project": {"title": "Generic AI Productivity App"},
+      "stages": {
+        "problem": {
+          "summary": "The project has a broad AI productivity idea but no specific user or painful scenario.",
+          "state_json": {"problem": {"one_line": "AI productivity app"}, "target_user": {"core": "Everyone"}, "evidence": {"key_unknowns": ["Who urgently needs this?"]}},
+          "state_meta": {"answer_meta": {
+            "problem.one_line": {"resolution_status": "partial", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "target_user.core": {"resolution_status": "partial", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "evidence.key_unknowns": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["problem.scenarios", "alternatives.current_solutions"]
+        },
+        "market": {
+          "summary": "Buyer, channel, and willingness to pay are not known.",
+          "state_json": {"market_strategy": {"uvp": {"one_line": "Make work easier"}, "business_model": {"payer_role": "Unknown"}, "competition": {"competitor_types": ["Unknown"]}}},
+          "state_meta": {"answer_meta": {
+            "market_strategy.uvp.one_line": {"resolution_status": "partial", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "market_strategy.business_model.payer_role": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"},
+            "market_strategy.competition.competitor_types": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["market_strategy.go_to_market.primary_channels"]
+        },
+        "tech": {
+          "summary": "The implementation plan is still a generic app statement.",
+          "state_json": {"tech_execution": {"product_scope": {"mvp_definition": "Build an AI app"}, "roadmap_risks": {"top_technical_risks": ["Unknown"]}}},
+          "state_meta": {"answer_meta": {
+            "tech_execution.product_scope.mvp_definition": {"resolution_status": "partial", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "tech_execution.roadmap_risks.top_technical_risks": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["tech_execution.architecture.high_level_components"]
+        }
+      },
+      "dvf": {
+        "scoreboard": {"desirability": 32, "viability": 28, "feasibility": 35, "total_score": 32, "decision_band": "stop"},
+        "assessment": {
+          "desirability": {"score": 32, "comment": "The input names a broad productivity idea but lacks a specific painful scenario or alternative workflow.", "subscores": null, "confidence": 0.35},
+          "viability": {"score": 28, "comment": "The buyer, channel, and competition are unknown, so market credibility is low.", "subscores": null, "confidence": 0.3},
+          "feasibility": {"score": 35, "comment": "The MVP is generic and key architecture and technical risks are missing.", "subscores": null, "confidence": 0.35},
+          "total_score": 32
+        }
+      },
+      "dvf_confidence": {"level": "low", "coverage": 25},
+      "key_risks": [{"risk": "The project may solve no urgent user problem.", "severity": "high", "likelihood": "high", "category": "Desirability", "mitigation_suggestion": "Interview a narrow user segment before building."}],
+      "validation_plan": [{"action": "Interview five narrowly defined users about one repeated workflow pain.", "target": "Narrow user segment", "success_signal": "At least three users describe the same painful scenario.", "linked_risk": "No urgent problem", "priority": "high", "time_horizon": "7 days"}],
+      "expectations": {
+        "score_ranges": {"desirability": [20, 40], "viability": [20, 38], "feasibility": [25, 45], "total_score": [25, 38]},
+        "decision_confidence": "low",
+        "max_dimension_confidence": 0.4,
+        "min_evidence_counts": {"unknowns": 6, "evidence_gaps": 8},
+        "required_gap_terms": ["Scenarios", "Payer Role"],
+        "required_action_terms": ["Interview five"],
+        "forbidden_claims": ["validated pain", "paying users", "enterprise compliance buyer"],
+        "required_source_layers": [{"path": "market_strategy.business_model.payer_role", "layer": "unknowns", "resolution_status": "unknown", "evidence_level": "E0"}]
+      }
+    },
+    {
+      "id": "evidence_thin_mentor_matching_pending_confirm",
+      "categories": ["evidence_thin", "pending_confirm"],
+      "project": {"title": "Mentor Matching Copilot"},
+      "stages": {
+        "problem": {
+          "summary": "Student founders want mentor guidance, but the current evidence is anecdotal.",
+          "state_json": {"problem": {"one_line": "Student founders struggle to find the right mentor advice."}, "target_user": {"core": "Student founders"}, "evidence": {"user_interview_count": 0}},
+          "state_meta": {"answer_meta": {
+            "problem.one_line": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "target_user.core": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "evidence.user_interview_count": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["alternatives.current_solutions"]
+        },
+        "market": {
+          "summary": "The UVP is AI-drafted and still pending founder confirmation.",
+          "state_json": {"market_strategy": {"business_model": {"payer_role": "University entrepreneurship center"}, "go_to_market": {"primary_channels": ["Campus programs"]}}},
+          "state_meta": {
+            "answer_meta": {
+              "market_strategy.business_model.payer_role": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+              "market_strategy.go_to_market.primary_channels": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"}
+            },
+            "pending_confirm": {
+              "market_strategy": {
+                "uvp": {"one_line": {"value": "Match each founder with the next best mentor conversation.", "source": "ai"}}
+              }
+            }
+          },
+          "missing_paths": ["market_strategy.competition.competitor_types"]
+        },
+        "tech": {
+          "summary": "The MVP scope is plausible, but data access and matching quality are unproven.",
+          "state_json": {"tech_execution": {"product_scope": {"mvp_definition": "Mentor profile intake and matching suggestions"}, "roadmap_risks": {"top_technical_risks": ["Matching quality"]}}},
+          "state_meta": {"answer_meta": {
+            "tech_execution.product_scope.mvp_definition": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "tech_execution.roadmap_risks.top_technical_risks": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"}
+          }},
+          "missing_paths": ["tech_execution.dependencies.key_integrations"]
+        }
+      },
+      "dvf": {
+        "scoreboard": {"desirability": 64, "viability": 55, "feasibility": 58, "total_score": 59, "decision_band": "hold"},
+        "assessment": {
+          "desirability": {"score": 64, "comment": "The student founder pain is plausible but has no interview count or alternative evidence yet.", "subscores": null, "confidence": 0.45},
+          "viability": {"score": 55, "comment": "A possible campus buyer exists, but the UVP is still an AI suggestion pending confirmation.", "subscores": null, "confidence": 0.4},
+          "feasibility": {"score": 58, "comment": "The MVP scope is understandable, while matching quality and integrations remain unproven.", "subscores": null, "confidence": 0.45},
+          "total_score": 59
+        }
+      },
+      "dvf_confidence": {"level": "low", "coverage": 42},
+      "key_risks": [{"risk": "The strongest value proposition is still an unconfirmed AI draft.", "severity": "medium", "likelihood": "high", "category": "Evidence", "mitigation_suggestion": "Confirm or edit the UVP before using it for scoring."}],
+      "validation_plan": [{"action": "Confirm the AI-drafted UVP with three student founders and one program manager.", "target": "Pending UVP", "success_signal": "Users repeat the UVP in their own words and identify a mentor-selection pain.", "linked_risk": "Pending AI suggestion", "priority": "high", "time_horizon": "7 days"}],
+      "expectations": {
+        "score_ranges": {"desirability": [55, 70], "viability": [45, 62], "feasibility": [50, 65], "total_score": [52, 64]},
+        "decision_confidence": "low",
+        "max_dimension_confidence": 0.5,
+        "min_evidence_counts": {"ai_inferences": 1, "evidence_gaps": 7},
+        "required_gap_terms": ["Pending suggestion", "Current Solutions"],
+        "required_action_terms": ["AI-drafted UVP"],
+        "forbidden_claims": ["confirmed UVP", "proven mentor marketplace"],
+        "required_pending_paths": ["market_strategy.uvp.one_line"],
+        "required_source_layers": [{"path": "market_strategy.uvp.one_line", "layer": "ai_inferences", "resolution_status": "suggested", "evidence_level": "E0"}]
+      }
+    },
+    {
+      "id": "technical_devtool_market_weak",
+      "categories": ["technically_strong_market_weak"],
+      "project": {"title": "API Test Harness Devtool"},
+      "stages": {
+        "problem": {
+          "summary": "Developers lose time reproducing flaky API failures.",
+          "state_json": {"problem": {"one_line": "Backend teams struggle to reproduce flaky API failures."}, "target_user": {"core": "Backend platform teams"}, "alternatives": {"current_solutions": ["Postman collections", "custom scripts"]}},
+          "state_meta": {"answer_meta": {
+            "problem.one_line": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+            "target_user.core": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+            "alternatives.current_solutions": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"}
+          }},
+          "missing_paths": ["evidence.user_interview_count"]
+        },
+        "market": {
+          "summary": "The buyer and channel are weak despite a clear developer pain.",
+          "state_json": {"market_strategy": {"uvp": {"one_line": "Replay flaky API failures in CI"}, "business_model": {"payer_role": "Unknown"}, "go_to_market": {"primary_channels": ["Unknown"]}}},
+          "state_meta": {"answer_meta": {
+            "market_strategy.uvp.one_line": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+            "market_strategy.business_model.payer_role": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"},
+            "market_strategy.go_to_market.primary_channels": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["market_strategy.business_model.revenue_model"]
+        },
+        "tech": {
+          "summary": "The founder has a working prototype and realistic architecture.",
+          "state_json": {"tech_execution": {"product_scope": {"mvp_definition": "Record and replay API failure traces in CI"}, "architecture": {"high_level_components": ["CLI recorder", "trace store", "CI replay runner"]}, "roadmap_risks": {"top_technical_risks": ["Sensitive request data"], "risk_mitigation_plan": "Redaction and local-only storage"}}},
+          "state_meta": {"answer_meta": {
+            "tech_execution.product_scope.mvp_definition": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+            "tech_execution.architecture.high_level_components": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+            "tech_execution.roadmap_risks.top_technical_risks": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+            "tech_execution.roadmap_risks.risk_mitigation_plan": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"}
+          }},
+          "missing_paths": []
+        }
+      },
+      "dvf": {
+        "scoreboard": {"desirability": 66, "viability": 42, "feasibility": 84, "total_score": 64, "decision_band": "hold"},
+        "assessment": {
+          "desirability": {"score": 66, "comment": "The developer pain and alternatives are concrete, but user interview evidence is still missing.", "subscores": null, "confidence": 0.58},
+          "viability": {"score": 42, "comment": "The buyer, channel, and revenue model are unknown, so market strength is not proven.", "subscores": null, "confidence": 0.35},
+          "feasibility": {"score": 84, "comment": "The prototype scope, architecture, and technical risk mitigation are specific.", "subscores": null, "confidence": 0.78},
+          "total_score": 64
+        }
+      },
+      "dvf_confidence": {"level": "medium", "coverage": 58},
+      "key_risks": [{"risk": "Technical feasibility may mask an unproven buyer and sales path.", "severity": "high", "likelihood": "medium", "category": "Viability", "mitigation_suggestion": "Run willingness-to-pay interviews before expanding the prototype."}],
+      "validation_plan": [{"action": "Run willingness-to-pay interviews with five platform engineering managers.", "target": "Economic buyer", "success_signal": "At least two managers name a budget path and urgent API-debugging workflow.", "linked_risk": "Unproven buyer", "priority": "high", "time_horizon": "14 days"}],
+      "expectations": {
+        "score_ranges": {"desirability": [60, 72], "viability": [35, 50], "feasibility": [78, 90], "total_score": [58, 68]},
+        "decision_confidence": "medium",
+        "min_evidence_counts": {"user_confirmed_inputs": 5, "unknowns": 3, "evidence_gaps": 4},
+        "required_gap_terms": ["Payer Role", "Revenue Model"],
+        "required_action_terms": ["willingness-to-pay"],
+        "forbidden_claims": ["signed enterprise contracts", "proven sales channel"],
+        "required_source_layers": [{"path": "market_strategy.business_model.payer_role", "layer": "unknowns", "resolution_status": "unknown"}]
+      }
+    },
+    {
+      "id": "nontechnical_founder_ops_app",
+      "categories": ["non_technical_founder"],
+      "project": {"title": "Clinic Intake Ops App"},
+      "stages": {
+        "problem": {
+          "summary": "Small clinics lose staff time to repetitive intake calls.",
+          "state_json": {"problem": {"one_line": "Clinic staff repeatedly collect the same intake information by phone."}, "target_user": {"core": "Small clinic operations managers"}, "evidence": {"user_interview_count": 7}},
+          "state_meta": {"answer_meta": {
+            "problem.one_line": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+            "target_user.core": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"},
+            "evidence.user_interview_count": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E3", "source": "user"}
+          }},
+          "missing_paths": []
+        },
+        "market": {
+          "summary": "The buyer and pain are plausible, but procurement and pricing need validation.",
+          "state_json": {"market_strategy": {"uvp": {"one_line": "Reduce repeated intake calls for small clinics"}, "business_model": {"payer_role": "Clinic owner", "revenue_model": "Monthly subscription"}, "go_to_market": {"primary_channels": ["Local clinic networks"]}}},
+          "state_meta": {"answer_meta": {
+            "market_strategy.uvp.one_line": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+            "market_strategy.business_model.payer_role": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+            "market_strategy.business_model.revenue_model": {"resolution_status": "answered", "claim_type": "estimate", "evidence_level": "E1", "source": "user"},
+            "market_strategy.go_to_market.primary_channels": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"}
+          }},
+          "missing_paths": ["market_strategy.competition.competitor_types"]
+        },
+        "tech": {
+          "summary": "The founder is non-technical and plans to outsource the first build.",
+          "state_json": {"tech_execution": {"product_scope": {"mvp_definition": "Simple intake form and staff dashboard"}, "team": {"technical_owner": "No in-house technical owner yet"}, "roadmap_risks": {"top_technical_risks": ["Vendor dependency", "Privacy review"], "risk_mitigation_plan": "Find a technical advisor before build"}}},
+          "state_meta": {"answer_meta": {
+            "tech_execution.product_scope.mvp_definition": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+            "tech_execution.team.technical_owner": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+            "tech_execution.roadmap_risks.top_technical_risks": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+            "tech_execution.roadmap_risks.risk_mitigation_plan": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"}
+          }},
+          "missing_paths": ["tech_execution.architecture.high_level_components"]
+        }
+      },
+      "dvf": {
+        "scoreboard": {"desirability": 76, "viability": 62, "feasibility": 48, "total_score": 59, "decision_band": "hold"},
+        "assessment": {
+          "desirability": {"score": 76, "comment": "The clinic operations pain is backed by seven user conversations.", "subscores": null, "confidence": 0.74},
+          "viability": {"score": 62, "comment": "The buyer and subscription model are plausible, but pricing and competition need validation.", "subscores": null, "confidence": 0.55},
+          "feasibility": {"score": 48, "comment": "The MVP is narrow, but no in-house technical owner and privacy review create execution risk.", "subscores": null, "confidence": 0.45},
+          "total_score": 59
+        }
+      },
+      "dvf_confidence": {"level": "medium", "coverage": 56},
+      "key_risks": [{"risk": "No in-house technical owner could slow delivery or vendor review.", "severity": "high", "likelihood": "medium", "category": "Feasibility", "mitigation_suggestion": "Secure a technical advisor before committing to build."}],
+      "validation_plan": [{"action": "Recruit a technical advisor to review privacy and MVP build scope.", "target": "Execution path", "success_signal": "Advisor confirms a narrow implementation path and top privacy constraints.", "linked_risk": "No technical owner", "priority": "high", "time_horizon": "14 days"}],
+      "expectations": {
+        "score_ranges": {"desirability": [70, 82], "viability": [55, 68], "feasibility": [40, 55], "total_score": [54, 64]},
+        "decision_confidence": "medium",
+        "min_evidence_counts": {"user_confirmed_inputs": 5, "evidence_gaps": 4},
+        "required_gap_terms": ["High Level Components"],
+        "required_action_terms": ["technical advisor"],
+        "forbidden_claims": ["full engineering team", "HIPAA approved"],
+        "required_source_layers": [{"path": "tech_execution.team.technical_owner", "layer": "user_confirmed_inputs", "evidence_level": "E2"}]
+      }
+    },
+    {
+      "id": "complex_dependency_healthcare_integration",
+      "categories": ["complex_dependency"],
+      "project": {"title": "Specialist Referral Router"},
+      "stages": {
+        "problem": {
+          "summary": "Clinics struggle to route specialist referrals, but the workflow is regulated.",
+          "state_json": {"problem": {"one_line": "Primary clinics struggle to route specialist referrals."}, "target_user": {"core": "Referral coordinators"}, "evidence": {"user_interview_count": 5}},
+          "state_meta": {"answer_meta": {
+            "problem.one_line": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+            "target_user.core": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+            "evidence.user_interview_count": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"}
+          }},
+          "missing_paths": []
+        },
+        "market": {
+          "summary": "The buyer path is plausible but procurement and compliance proof are missing.",
+          "state_json": {"market_strategy": {"uvp": {"one_line": "Reduce referral routing delays"}, "business_model": {"payer_role": "Clinic administrator"}, "competition": {"competitor_types": ["EHR workflow modules"]}}},
+          "state_meta": {"answer_meta": {
+            "market_strategy.uvp.one_line": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+            "market_strategy.business_model.payer_role": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "market_strategy.competition.competitor_types": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"}
+          }},
+          "missing_paths": ["market_strategy.go_to_market.primary_channels"]
+        },
+        "tech": {
+          "summary": "The project depends on EHR integration and compliance review.",
+          "state_json": {"tech_execution": {"product_scope": {"mvp_definition": "Referral triage queue"}, "dependencies": {"key_integrations": ["EHR integration"]}, "roadmap_risks": {"top_technical_risks": ["Compliance review", "Integration access"], "risk_mitigation_plan": "Unknown"}}},
+          "state_meta": {"answer_meta": {
+            "tech_execution.product_scope.mvp_definition": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+            "tech_execution.dependencies.key_integrations": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "tech_execution.roadmap_risks.top_technical_risks": {"resolution_status": "answered", "claim_type": "fact", "evidence_level": "E2", "source": "user"},
+            "tech_execution.roadmap_risks.risk_mitigation_plan": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["tech_execution.architecture.high_level_components"],
+          "verification_summary": {
+            "status": "checked",
+            "supported_claims": 0,
+            "unsupported_claims": 0,
+            "uncertain_claims": 1,
+            "items": [{"claim": "EHR integration access is available for a first MVP.", "verdict": "uncertain", "confidence": 0.35}]
+          }
+        }
+      },
+      "dvf": {
+        "scoreboard": {"desirability": 70, "viability": 52, "feasibility": 38, "total_score": 53, "decision_band": "hold"},
+        "assessment": {
+          "desirability": {"score": 70, "comment": "Referral coordinators and routing delays are named with early interview evidence.", "subscores": null, "confidence": 0.6},
+          "viability": {"score": 52, "comment": "The clinic administrator buyer is plausible, but procurement channel evidence is missing.", "subscores": null, "confidence": 0.45},
+          "feasibility": {"score": 38, "comment": "EHR integration, compliance review, and unknown mitigation make implementation high risk.", "subscores": null, "confidence": 0.35},
+          "total_score": 53
+        }
+      },
+      "dvf_confidence": {"level": "low", "coverage": 45},
+      "key_risks": [{"risk": "EHR integration access and compliance review could block the MVP.", "severity": "high", "likelihood": "high", "category": "Feasibility", "mitigation_suggestion": "Run an integration access spike before product build."}],
+      "validation_plan": [{"action": "Run an EHR integration access spike and compliance review before building.", "target": "Integration feasibility", "success_signal": "A test environment and compliance path are confirmed.", "linked_risk": "EHR integration access", "priority": "high", "time_horizon": "14 days"}],
+      "expectations": {
+        "score_ranges": {"desirability": [62, 76], "viability": [45, 60], "feasibility": [30, 45], "total_score": [48, 58]},
+        "decision_confidence": "low",
+        "max_dimension_confidence": 0.6,
+        "min_evidence_counts": {"unknowns": 3, "evidence_gaps": 5, "verification_summary": 1},
+        "required_gap_terms": ["Risk Mitigation Plan", "EHR integration"],
+        "required_action_terms": ["integration access spike"],
+        "forbidden_claims": ["HIPAA approved", "EHR partnership signed"],
+        "required_verification_verdicts": ["uncertain"]
+      }
+    },
+    {
+      "id": "unknown_heavy_student_budget_tool",
+      "categories": ["unknown_heavy"],
+      "project": {"title": "Student Budget Helper"},
+      "stages": {
+        "problem": {
+          "summary": "The founder is unsure which student budget problem is most painful.",
+          "state_json": {"problem": {"one_line": "Students may need budget help"}, "target_user": {"core": "Unknown"}, "evidence": {"key_unknowns": ["Which student group?", "Which budget moment?"]}},
+          "state_meta": {"answer_meta": {
+            "problem.one_line": {"resolution_status": "partial", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "target_user.core": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"},
+            "evidence.key_unknowns": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["problem.scenarios", "alternatives.current_solutions"]
+        },
+        "market": {
+          "summary": "Payer, channel, and competitive alternatives are unknown.",
+          "state_json": {"market_strategy": {"business_model": {"payer_role": "Unknown", "revenue_model": "Undecided"}, "go_to_market": {"primary_channels": ["Unknown"]}}},
+          "state_meta": {"answer_meta": {
+            "market_strategy.business_model.payer_role": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"},
+            "market_strategy.business_model.revenue_model": {"resolution_status": "undecided", "claim_type": "estimate", "evidence_level": "E0", "source": "user"},
+            "market_strategy.go_to_market.primary_channels": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["market_strategy.uvp.one_line", "market_strategy.competition.competitor_types"]
+        },
+        "tech": {
+          "summary": "The tech plan is not decided.",
+          "state_json": {"tech_execution": {"product_scope": {"mvp_definition": "Undecided"}, "roadmap_risks": {"risk_mitigation_plan": "Unknown"}}},
+          "state_meta": {"answer_meta": {
+            "tech_execution.product_scope.mvp_definition": {"resolution_status": "undecided", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"},
+            "tech_execution.roadmap_risks.risk_mitigation_plan": {"resolution_status": "unknown", "claim_type": "hypothesis", "evidence_level": "E0", "source": "user"}
+          }},
+          "missing_paths": ["tech_execution.architecture.high_level_components", "tech_execution.roadmap_risks.top_technical_risks"]
+        }
+      },
+      "dvf": {
+        "scoreboard": {"desirability": 48, "viability": 36, "feasibility": 45, "total_score": 43, "decision_band": "hold"},
+        "assessment": {
+          "desirability": {"score": 48, "comment": "The student budget direction is plausible but target segment, scenario, and alternatives are unknown.", "subscores": null, "confidence": 0.3},
+          "viability": {"score": 36, "comment": "Payer, revenue model, channel, UVP, and competition are missing or undecided.", "subscores": null, "confidence": 0.25},
+          "feasibility": {"score": 45, "comment": "The MVP and technical risk mitigation are undecided, so feasibility is preliminary.", "subscores": null, "confidence": 0.28},
+          "total_score": 43
+        }
+      },
+      "dvf_confidence": {"level": "low", "coverage": 20},
+      "key_risks": [{"risk": "The founder does not yet know the target segment, buyer, or MVP path.", "severity": "high", "likelihood": "high", "category": "Data quality", "mitigation_suggestion": "Resolve the unknowns before making a build decision."}],
+      "validation_plan": [{"action": "Resolve the target segment and budget moment with five exploratory interviews.", "target": "Unknown student segment", "success_signal": "A specific segment and repeated budget moment are identified.", "linked_risk": "Unknown target segment", "priority": "high", "time_horizon": "7 days"}],
+      "expectations": {
+        "score_ranges": {"desirability": [40, 55], "viability": [28, 42], "feasibility": [38, 52], "total_score": [38, 48]},
+        "decision_confidence": "low",
+        "max_dimension_confidence": 0.35,
+        "min_evidence_counts": {"unknowns": 10, "evidence_gaps": 12},
+        "required_gap_terms": ["target_user.core", "market_strategy.uvp.one_line"],
+        "required_action_terms": ["Resolve the target segment"],
+        "forbidden_claims": ["confirmed student buyer", "validated budget pain"],
+        "required_source_layers": [{"path": "market_strategy.business_model.revenue_model", "layer": "unknowns", "resolution_status": "undecided", "evidence_level": "E0"}]
+      }
+    },
+    {
+      "id": "contradicted_alternatives_claim",
+      "categories": ["contradiction_prone", "externally_contradicted"],
+      "project": {"title": "No-Alternative Study Planner"},
+      "stages": {
+        "problem": {
+          "summary": "The founder claims students have no alternative, but verification contradicts that claim.",
+          "state_json": {"problem": {"one_line": "Students have no good way to plan study tasks."}, "target_user": {"core": "College students"}, "alternatives": {"current_solutions": ["None"]}},
+          "state_meta": {"answer_meta": {
+            "problem.one_line": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "target_user.core": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "alternatives.current_solutions": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"}
+          }},
+          "missing_paths": ["evidence.user_interview_count"],
+          "verification_summary": {
+            "status": "checked",
+            "supported_claims": 0,
+            "unsupported_claims": 1,
+            "uncertain_claims": 0,
+            "items": [{"claim": "Students have no current planning alternatives.", "verdict": "contradicted", "confidence": 0.76}]
+          }
+        },
+        "market": {
+          "summary": "The buyer and channel depend on a claim that alternatives do not exist.",
+          "state_json": {"market_strategy": {"uvp": {"one_line": "The first planner for college students"}, "business_model": {"payer_role": "Student"}, "competition": {"competitor_types": ["None"]}}},
+          "state_meta": {"answer_meta": {
+            "market_strategy.uvp.one_line": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "market_strategy.business_model.payer_role": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"},
+            "market_strategy.competition.competitor_types": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E1", "source": "user"}
+          }},
+          "missing_paths": ["market_strategy.go_to_market.primary_channels"]
+        },
+        "tech": {
+          "summary": "The implementation is manageable but not differentiated by evidence.",
+          "state_json": {"tech_execution": {"product_scope": {"mvp_definition": "Study planning calendar"}, "architecture": {"high_level_components": ["Calendar UI", "Task reminders"]}}},
+          "state_meta": {"answer_meta": {
+            "tech_execution.product_scope.mvp_definition": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"},
+            "tech_execution.architecture.high_level_components": {"resolution_status": "answered", "claim_type": "hypothesis", "evidence_level": "E2", "source": "user"}
+          }},
+          "missing_paths": ["tech_execution.roadmap_risks.top_technical_risks"]
+        }
+      },
+      "dvf": {
+        "scoreboard": {"desirability": 55, "viability": 40, "feasibility": 60, "total_score": 52, "decision_band": "hold"},
+        "assessment": {
+          "desirability": {"score": 55, "comment": "The student planning pain is plausible, but the no-alternative claim is contradicted and interview evidence is missing.", "subscores": null, "confidence": 0.35},
+          "viability": {"score": 40, "comment": "The UVP and competition story depend on an unsupported no-alternative claim.", "subscores": null, "confidence": 0.3},
+          "feasibility": {"score": 60, "comment": "The MVP is implementable, but differentiation and risk evidence are weak.", "subscores": null, "confidence": 0.45},
+          "total_score": 52
+        }
+      },
+      "dvf_confidence": {"level": "low", "coverage": 34},
+      "key_risks": [{"risk": "The no-alternative claim is contradicted by existing planner tools.", "severity": "high", "likelihood": "high", "category": "Evidence", "mitigation_suggestion": "Reframe around a specific underserved workflow instead of claiming no alternatives."}],
+      "validation_plan": [{"action": "Map current student planning alternatives before restating the UVP.", "target": "Alternative landscape", "success_signal": "At least five current tools or workflows are compared against the target use case.", "linked_risk": "Contradicted alternative claim", "priority": "high", "time_horizon": "7 days"}],
+      "expectations": {
+        "score_ranges": {"desirability": [48, 62], "viability": [32, 48], "feasibility": [52, 68], "total_score": [46, 58]},
+        "decision_confidence": "low",
+        "max_dimension_confidence": 0.5,
+        "min_evidence_counts": {"evidence_gaps": 7, "verification_summary": 1},
+        "required_gap_terms": ["Students have no current planning alternatives", "User Interview Count"],
+        "required_action_terms": ["planning alternatives"],
+        "forbidden_claims": ["no competitors exist", "externally proven no alternatives"],
+        "required_verification_verdicts": ["contradicted"],
+        "required_source_layers": [{"path": "alternatives.current_solutions", "layer": "founder_assumptions", "evidence_level": "E1"}]
+      }
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+export const ORG_SETTINGS_MESSAGES = {
+  en: {
+    advanced: {
+      chip: "JSON",
+      description: "View and edit the raw JSON payload.",
+      jsonDescription:
+        "Keys you omit remain unchanged. Use valid JSON objects only.",
+      jsonHint: 'Example: { "allow_cohorts": true }.',
+      jsonLabel: "Settings JSON",
+      jsonTitle: "Settings JSON",
+      title: "Advanced settings",
+    },
+    actions: {
+      cancel: "Cancel",
+      reset: "Reset",
+      save: "Save changes",
+      saving: "Saving...",
+    },
+    errors: {
+      jsonInvalid: "Settings must be valid JSON.",
+      jsonObject: "Settings must be a JSON object.",
+      orgNameRequired: "Organization name is required.",
+      orgSettings: {
+        accessDenied: "You do not have access to update organization settings.",
+        default: "Unable to update organization settings.",
+        sessionExpired: "Your session expired. Please sign in again.",
+        unavailable: "Organization settings are unavailable. Try again shortly.",
+      },
+      questionBank: {
+        accessDenied: "You do not have access to view the question bank.",
+        default: "Unable to load question bank status.",
+        notFound: "No active question bank version found.",
+        sessionExpired: "Your session expired. Please sign in again.",
+        unavailable: "Question bank status is unavailable. Try again shortly.",
+      },
+    },
+    features: {
+      cohortsHint: "Allow cohort programs and enrollment.",
+      cohortsLabel: "Enable cohorts",
+      description: "Toggle core org capabilities.",
+      mentorAssignmentsHint: "Allow mentors to be assigned to projects.",
+      mentorAssignmentsLabel: "Enable mentorship",
+      mentorVisibilityLabel: "Mentor visibility",
+      title: "Feature & permissions",
+    },
+    general: {
+      description: "Profile details and identity.",
+      loading: "Loading...",
+      logoAria: "Preview logo",
+      logoLabel: "Preview logo",
+      logoPreviewAlt: "Organization logo preview",
+      orgNameHint: "Displayed across the admin workspace.",
+      orgNameLabel: "Organization name",
+      orgSlugHint: "Managed during org provisioning.",
+      orgSlugLabel: "Organization slug",
+      orgTypeHint: "Used to shape default access rules.",
+      orgTypeLabel: "Organization type",
+      title: "General info",
+      unavailable: "Unavailable",
+    },
+    logo: {
+      chooseFile: "Choose an image file",
+      description:
+        "PNG, JPG, or SVG up to 2MB. This creates a local preview; logo persistence is not available yet.",
+      drop: "Drop a logo here",
+      placeholderHint: "or choose a file below",
+      ready: "Logo preview applied. It has not been saved to the server.",
+      selectFile: "Select a logo file to continue.",
+      title: "Preview logo",
+      tooLarge: "Logo file must be 2MB or smaller.",
+      unsupported: "Use a PNG, JPG, or SVG file.",
+      upload: "Use preview",
+    },
+    options: {
+      currentPrefix: "Current",
+      mentorVisibility: {
+        full: {
+          description: "Mentors can view full responses.",
+          label: "Full detail",
+        },
+        private: {
+          description: "Mentors only see project status metadata.",
+          label: "Private",
+        },
+        summaries_only: {
+          description: "Mentors see summaries, not full responses.",
+          label: "Summaries only",
+        },
+      },
+      orgType: {
+        institution: "Institution",
+        private: "Private",
+      },
+    },
+    page: {
+      eyebrow: "Admin",
+      subtitle:
+        "Manage organization profile fields and core feature flags. Advanced JSON is available if you need full control.",
+      title: "Organization settings",
+    },
+    questionBank: {
+      activated: "Activated",
+      bankKey: "Bank key",
+      defaultBank: "default",
+      description: "Active version used for new projects.",
+      source: "Source",
+      title: "Question bank",
+      version: "Active version",
+    },
+    status: {
+      loading: "Loading settings...",
+      saved: "Settings saved.",
+      saving: "Saving changes...",
+      unavailable: "Settings are unavailable.",
+      unknown: "Unknown",
+      unsaved: "Unsaved changes",
+      upToDate: "Settings are up to date.",
+    },
+  },
+  zh: {
+    advanced: {
+      chip: "JSON",
+      description: "查看并编辑原始 JSON 配置。",
+      jsonDescription: "未包含的键会保持不变。请只提交有效的 JSON 对象。",
+      jsonHint: '示例：{ "allow_cohorts": true }。',
+      jsonLabel: "设置 JSON",
+      jsonTitle: "设置 JSON",
+      title: "高级设置",
+    },
+    actions: {
+      cancel: "取消",
+      reset: "重置",
+      save: "保存更改",
+      saving: "保存中...",
+    },
+    errors: {
+      jsonInvalid: "设置必须是有效 JSON。",
+      jsonObject: "设置必须是 JSON 对象。",
+      orgNameRequired: "组织名称不能为空。",
+      orgSettings: {
+        accessDenied: "你没有更新组织设置的权限。",
+        default: "无法更新组织设置。",
+        sessionExpired: "登录状态已过期，请重新登录。",
+        unavailable: "组织设置服务暂时不可用，请稍后再试。",
+      },
+      questionBank: {
+        accessDenied: "你没有查看题库状态的权限。",
+        default: "无法加载题库状态。",
+        notFound: "未找到启用中的题库版本。",
+        sessionExpired: "登录状态已过期，请重新登录。",
+        unavailable: "题库状态服务暂时不可用，请稍后再试。",
+      },
+    },
+    features: {
+      cohortsHint: "允许创建队列项目和管理报名。",
+      cohortsLabel: "启用队列",
+      description: "切换组织级核心能力。",
+      mentorAssignmentsHint: "允许将导师分配给项目。",
+      mentorAssignmentsLabel: "启用导师机制",
+      mentorVisibilityLabel: "导师可见范围",
+      title: "功能与权限",
+    },
+    general: {
+      description: "组织资料与身份信息。",
+      loading: "加载中...",
+      logoAria: "预览标志",
+      logoLabel: "预览标志",
+      logoPreviewAlt: "组织标志预览",
+      orgNameHint: "会显示在管理工作区中。",
+      orgNameLabel: "组织名称",
+      orgSlugHint: "在组织创建时配置。",
+      orgSlugLabel: "组织标识",
+      orgTypeHint: "用于决定默认访问规则。",
+      orgTypeLabel: "组织类型",
+      title: "基本信息",
+      unavailable: "不可用",
+    },
+    logo: {
+      chooseFile: "选择图片文件",
+      description:
+        "支持 PNG、JPG 或 SVG，最大 2MB。这里只会生成本地预览，暂不会保存到服务器。",
+      drop: "将标志拖到这里",
+      placeholderHint: "或在下方选择文件",
+      ready: "标志预览已应用，但尚未保存到服务器。",
+      selectFile: "请先选择标志文件。",
+      title: "预览标志",
+      tooLarge: "标志文件不能超过 2MB。",
+      unsupported: "请使用 PNG、JPG 或 SVG 文件。",
+      upload: "使用预览",
+    },
+    options: {
+      currentPrefix: "当前",
+      mentorVisibility: {
+        full: {
+          description: "导师可以查看完整回答。",
+          label: "完整详情",
+        },
+        private: {
+          description: "导师只能查看项目状态元数据。",
+          label: "私密",
+        },
+        summaries_only: {
+          description: "导师只能查看摘要，不能查看完整回答。",
+          label: "仅摘要",
+        },
+      },
+      orgType: {
+        institution: "机构",
+        private: "私有组织",
+      },
+    },
+    page: {
+      eyebrow: "管理",
+      subtitle:
+        "管理组织资料字段和核心功能开关。需要完整控制时，可以使用高级 JSON。",
+      title: "组织设置",
+    },
+    questionBank: {
+      activated: "启用时间",
+      bankKey: "题库键",
+      defaultBank: "default",
+      description: "新项目会使用的启用版本。",
+      source: "来源",
+      title: "题库",
+      version: "启用版本",
+    },
+    status: {
+      loading: "正在加载设置...",
+      saved: "设置已保存。",
+      saving: "正在保存更改...",
+      unavailable: "设置暂不可用。",
+      unknown: "未知",
+      unsaved: "有未保存更改",
+      upToDate: "设置已是最新。",
+    },
+  },
+} as const;
+
+export type OrgSettingsMessageLocale = keyof typeof ORG_SETTINGS_MESSAGES;
+
+export type OrgSettingsMessages = (typeof ORG_SETTINGS_MESSAGES)[OrgSettingsMessageLocale];

@@ -1,0 +1,622 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ideasense.ai/schema/stage3.tech_execution.json",
+  "title": "IdeaSenseAI Stage 3 - tech_execution (Feasibility) Data Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "tech_execution": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "meta": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "mode": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "lite",
+                            "pro"
+                          ]
+                        }
+                      ],
+                      "description": "Router output. Determines lite vs pro question path."
+                    },
+                    "search_mode": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "const": "no_search"
+                        }
+                      ],
+                      "description": "Must remain 'no_search' (can_use_search:false)."
+                    }
+                  }
+                }
+              ]
+            },
+            "product_scope": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "current_status": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "mvp_definition": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "core_user_journeys": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "non_functional_priorities": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "architecture": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "high_level_components": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "architecture_style": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "tech_stack_choices": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "component": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "tech": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          },
+                          "rationale": {
+                            "type": [
+                              "string",
+                              "null"
+                            ]
+                          }
+                        }
+                      }
+                    },
+                    "recommended_safe_stack": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Safe default recommendations (especially for lite mode)."
+                    },
+                    "complexity_hotspots": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "tech_debt_strategy": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "data_ai_scalability": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "data_sources": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "data_volume_year1": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "growth_expectations": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "data_access_rights": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "data_freshness": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "data_quality_gaps": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "labeling_plan": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "ai_usage": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "performance_expectations": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "model_quality_metrics": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "monitoring_feedback_loop": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "fallback_guardrails": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "scalability_strategy": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "infra_devops": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "hosting_choice": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "environments": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "cicd_approach": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "deploy_frequency": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "reliability_targets": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "testing_strategy": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "release_strategy": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "monitoring_plan": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "slo_targets": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "failover_strategy": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "incident_response": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "backup_dr_plan": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "security_compliance": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "data_types": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "compliance_requirements": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "audit_requirements": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "data_retention_policy": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "compliance_milestones": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "authn_authz_model": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "dependencies": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "key_integrations": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "single_points_of_dependency": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "vendor_lock_in_risks": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "dependency_maturity": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "team_process": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "execution_team_type": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "team_composition": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "skill_gaps": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "dev_process": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "roadmap_risks": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "execution_constraints": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "top_technical_risks": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "risk_mitigation_plan": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "roadmap_6_12m": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "feasibility_scores": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "tech_difficulty": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "compliance_risk": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "High",
+                            "Med",
+                            "Low",
+                            "Unknown"
+                          ]
+                        }
+                      ]
+                    },
+                    "overall_F": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "diagram_code": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$comment": "Stage 3 schema derived from IdeaSenseAI v5.3 Master Spec. All outputs are treated as Draft / Safe Default recommendations. No browsing: meta.search_mode must be 'no_search' (can_use_search:false)."
+}

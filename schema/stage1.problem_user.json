@@ -1,0 +1,271 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ideasense.ai/schema/stage1.problem_user.json",
+  "title": "IdeaSenseAI Stage 1 - problem_user (Desirability) Data Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "problem_user": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "idea": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "raw": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "snapshot": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "problem": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "main_problems": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "one_line": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "scenarios": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "frequency": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "severity_score": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "severity_reason": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "target_user": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "core": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "priority_segment": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "market_type_inferred": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "B2B",
+                    "B2C",
+                    "Hybrid",
+                    "Unknown"
+                  ]
+                }
+              ],
+              "description": "Inferred market type. Must be one of B2B/B2C/Hybrid/Unknown."
+            },
+            "decision_vs_end_user": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "impact": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "time_impact": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "money_impact": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "emotional_impact": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "alternatives": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "current_solutions": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "satisfaction_score": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "main_complaints": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "must_have_level": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "user_interview_count": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "key_learnings": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            },
+            "data_evidence": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "key_unknowns": {
+              "type": [
+                "array",
+                "null"
+              ],
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$comment": "Stage 1 schema derived from IdeaSenseAI v5.3 Master Spec. Unknown textual answers (e.g., 'unknown', 'unsure', 'none', '?') are expected to be represented as strings. Numeric scores are nullable (null-safe)."
+}

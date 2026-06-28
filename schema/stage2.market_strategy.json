@@ -1,0 +1,513 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ideasense.ai/schema/stage2.market_strategy.json",
+  "title": "IdeaSenseAI Stage 2 - market_strategy (Viability) Data Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "market_strategy": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "meta": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "market_type_override": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "B2B",
+                            "B2C",
+                            "Hybrid",
+                            "Unknown"
+                          ]
+                        }
+                      ],
+                      "description": "Explicit override (nullable). If null, inherit Stage 1 inferred type."
+                    },
+                    "search_mode": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "string",
+                          "enum": [
+                            "no_search",
+                            "assisted_research"
+                          ]
+                        }
+                      ]
+                    },
+                    "external_data_usage": {
+                      "anyOf": [
+                        {
+                          "type": "null"
+                        },
+                        {
+                          "type": "object",
+                          "additionalProperties": false,
+                          "properties": {
+                            "is_used": {
+                              "type": [
+                                "boolean",
+                                "null"
+                              ]
+                            },
+                            "source_notes": {
+                              "type": [
+                                "array",
+                                "null"
+                              ],
+                              "items": {
+                                "type": "string"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "uvp": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "one_line": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "unfair_advantage": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "business_model": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "payer_role": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "end_user_role": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "revenue_model": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "pricing_unit": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "initial_price_point_raw": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "initial_price_point_normalized": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "currency": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "price_rationale": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "secondary_revenue_streams": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "unit_economics": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "main_cost_drivers": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "cac_hypothesis": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "ltv_hypothesis": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "expected_payback_period_raw": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "expected_payback_period_normalized": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "market_size": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "initial_segment_definition": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "initial_segment_customer_count_est_raw": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "initial_segment_customer_count_est_normalized": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "annual_revenue_per_customer_est_raw": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "annual_revenue_per_customer_est_normalized": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "initial_segment_annual_potential": {
+                      "type": [
+                        "number",
+                        "null"
+                      ]
+                    },
+                    "why_now": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "allOf": [
+                    {
+                      "if": {
+                        "properties": {
+                          "initial_segment_customer_count_est_normalized": {
+                            "type": "null"
+                          }
+                        },
+                        "required": [
+                          "initial_segment_customer_count_est_normalized"
+                        ]
+                      },
+                      "then": {
+                        "properties": {
+                          "initial_segment_annual_potential": {
+                            "type": "null"
+                          }
+                        }
+                      }
+                    },
+                    {
+                      "if": {
+                        "properties": {
+                          "annual_revenue_per_customer_est_normalized": {
+                            "type": "null"
+                          }
+                        },
+                        "required": [
+                          "annual_revenue_per_customer_est_normalized"
+                        ]
+                      },
+                      "then": {
+                        "properties": {
+                          "initial_segment_annual_potential": {
+                            "type": "null"
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "$comment": "Null-safe calculation rule: if customer_count_est_normalized is null OR annual_revenue_per_customer_est_normalized is null, then initial_segment_annual_potential MUST be null. Otherwise it may be computed as count * arpa."
+                }
+              ]
+            },
+            "go_to_market": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "primary_channels": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "sales_motion": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "expected_sales_cycle_length": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "retention_loop": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "buying_decision_roles": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "adoption_barriers": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "competition": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "competitor_types": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "named_competitors": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "positioning_summary": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "competitive_red_flags": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "moat": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "short_term_diff": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "long_term_moat": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "switching_costs": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "big_tech_response_risk": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "viability_risks": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "must_be_true_assumptions": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "top_viability_risks": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "early_validation_plan": {
+                      "type": [
+                        "array",
+                        "null"
+                      ],
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "$comment": "Stage 2 schema derived from IdeaSenseAI v5.3 Master Spec. Key numeric inputs must be captured as raw strings AND parsed into *_normalized (number|null). Null-safe math: any calculation using null inputs must result in null."
+}

@@ -1,0 +1,120 @@
+@media print {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  .app-shell,
+  .app-shell__main,
+  .app-shell__content,
+  .page--report {
+    display: block;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  .app-shell__sidebar,
+  .app-shell__topbar,
+  .page-actions,
+  .report-details summary {
+    display: none !important;
+  }
+
+  .app-shell__content {
+    max-width: none;
+    padding: 0;
+  }
+
+  .report-scroll {
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0;
+  }
+
+  .report-hero,
+  .report-canvas {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .report-score-stack {
+    grid-template-columns: 1fr;
+  }
+
+  .lean-canvas {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "problem"
+      "solution"
+      "uvp"
+      "unfair"
+      "segments"
+      "metrics"
+      "channels"
+      "cost"
+      "revenue";
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  .lean-canvas__cell {
+    min-height: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .report-decision,
+  .report-stage-item {
+    background: transparent;
+  }
+
+  .report-decision {
+    grid-template-columns: 1fr;
+    border-color: #000000;
+  }
+
+  .report-decision__item + .report-decision__item {
+    border-left: none;
+    border-top: 1px solid #000000;
+    padding-left: 0;
+    padding-top: var(--space-3);
+  }
+
+  .score-meter {
+    border-color: #000000;
+  }
+
+  .scoreboard-grid,
+  .scoreboard-mini-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .score-meter__progress {
+    animation: none;
+    stroke-dashoffset: var(--meter-offset);
+  }
+
+  .card {
+    box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .report-section,
+  .report-stage-item {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}

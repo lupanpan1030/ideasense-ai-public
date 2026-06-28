@@ -1,0 +1,268 @@
+# ============================================================
+# IdeaSense_AI (Monorepo) .gitignore
+# - backend: Python / FastAPI
+# - frontend: Next.js / Node
+# - database: SQL schema/seed files (should be tracked)
+# ============================================================
+
+
+# -----------------------
+# OS / System files
+# -----------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
+# -----------------------
+# Editor / IDE
+# -----------------------
+# JetBrains
+.idea/
+
+# VS Code (keep common shared configs if you want)
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# Vim / swap
+*.swp
+*.swo
+
+# Cursor
+.cursorignore
+.cursorindexingignore
+
+# AI assistant / workflow tools (local)
+.agent/
+.agents/
+.claude/
+.codex/
+.cursor/
+.windsurf/
+.kiro/
+.shared/
+
+# Local DB clients
+.dbclient/
+
+
+# -----------------------
+# Python: Byte-compiled / optimized / DLL files
+# -----------------------
+__pycache__/
+*.py[codz]
+*$py.class
+
+# C extensions
+*.so
+
+
+# -----------------------
+# Python: Distribution / packaging
+# -----------------------
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+
+# -----------------------
+# Python: PyInstaller
+# -----------------------
+*.manifest
+*.spec
+
+
+# -----------------------
+# Python: Installer logs
+# -----------------------
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+# -----------------------
+# Python: Unit test / coverage reports
+# -----------------------
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+
+# -----------------------
+# Python: Translations
+# -----------------------
+*.mo
+*.pot
+
+
+# -----------------------
+# Python: Django / Flask / Scrapy (template leftovers but harmless)
+# -----------------------
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+instance/
+.webassets-cache
+.scrapy
+
+
+# -----------------------
+# Python: Sphinx / PyBuilder
+# -----------------------
+docs/_build/
+.pybuilder/
+target/
+
+
+# -----------------------
+# Python: Jupyter / IPython
+# -----------------------
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+
+# -----------------------
+# Python: Environments
+# -----------------------
+.env
+.envrc
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+
+# -----------------------
+# Python: IDE misc
+# -----------------------
+.spyderproject
+.spyproject
+.ropeproject
+
+
+# -----------------------
+# Python: mkdocs
+# -----------------------
+/site
+
+
+# -----------------------
+# Python: mypy / pyre / pytype
+# -----------------------
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+
+# -----------------------
+# Python: Cython
+# -----------------------
+cython_debug/
+
+
+# -----------------------
+# Tooling / Framework-specific
+# -----------------------
+# Abstra
+.abstra/
+
+# Ruff
+.ruff_cache/
+
+# PyPI configuration file
+.pypirc
+
+# Marimo
+marimo/_static/
+marimo/_lsp/
+__marimo__/
+
+
+# ============================================================
+# Frontend (Next.js / Node)
+# ============================================================
+# Dependencies
+node_modules
+node_modules/
+
+# Next.js build output / caches
+.next/
+out/
+.turbo/
+.vercel/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local env files (do not commit secrets)
+.env.local
+.env.*.local
+
+# TypeScript build cache
+*.tsbuildinfo
+
+
+# ============================================================
+# Database / local artifacts (optional)
+# ============================================================
+# If you ever generate local sqlite/db files, keep them untracked:
+*.sqlite
+*.sqlite3
+*.db
+
+# Local run artifacts
+artifacts/
+/images/
+output/
+
+# Generated database snapshot
+
+
+# ============================================================
+# IMPORTANT: Allowlist overrides for this monorepo
+# ============================================================
+# Python template ignores any folder named "lib/".
+# Your Next.js source lives in frontend/lib/, so we MUST re-include it:
+!frontend/lib/
+!frontend/lib/**
+.vercel

@@ -1,0 +1,52 @@
+version: public-example-1.0
+public_safe: true
+source: >
+  Synthetic public-safe example. This file demonstrates the question-bank data
+  shape for public exports only. It is not derived from the production question
+  bank and must not be used as production assessment content.
+stages:
+  problem:
+    questions:
+      - id: PEX1
+        title: Problem Snapshot
+        type: Required
+        prompt: "Briefly describe the customer problem this product idea is meant to address."
+        standard_question: "What customer problem are you trying to solve?"
+        consultant_tactic: directask
+        instruction: "Collect a short synthetic problem statement for demo flows."
+        validation_rule: "Answer should mention a problem and a target context."
+        schema_paths:
+          - problem.one_line
+        expected_key_points:
+          - problem
+          - target context
+  market:
+    questions:
+      - id: MEX1
+        title: Market Snapshot
+        type: Required
+        prompt: "Describe the broad market or user segment for this demo idea."
+        standard_question: "Who is the demo target segment?"
+        consultant_tactic: directask
+        instruction: "Collect a synthetic market segment for demo flows."
+        validation_rule: "Answer should name a user or buyer segment."
+        schema_paths:
+          - market_strategy.target_segment
+        expected_key_points:
+          - target segment
+  tech:
+    questions:
+      - id: TEX1
+        title: Build Snapshot
+        type: Required
+        prompt: "Describe the simplest demo version of the product and one implementation risk."
+        standard_question: "What is the simplest demo build and one technical risk?"
+        consultant_tactic: directask
+        instruction: "Collect synthetic MVP and implementation-risk notes for demo flows."
+        validation_rule: "Answer should mention a simple build scope and one risk."
+        schema_paths:
+          - tech_execution.product_scope.mvp_definition
+          - tech_execution.roadmap_risks.top_technical_risks
+        expected_key_points:
+          - simple build scope
+          - implementation risk

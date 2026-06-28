@@ -1,0 +1,16 @@
+{
+  "name": "ideasense-ai",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:e2e": "npm --prefix frontend run e2e",
+    "frontend:e2e:headed": "npm --prefix frontend run e2e:headed",
+    "frontend:e2e:install": "npm --prefix frontend run e2e:install",
+    "frontend:e2e:ui": "npm --prefix frontend run e2e:ui",
+    "frontend:lint": "npm --prefix frontend run lint",
+    "frontend:test": "npm --prefix frontend run test",
+    "smoke:admin-ui": "node scripts/smoke/admin-ui-smoke.mjs",
+    "smoke:report-quality": "node scripts/smoke/report-quality-ops-dashboard.mjs"
+  }
+}

@@ -1,0 +1,383 @@
+{
+  "scenarios": [
+    {
+      "id": "zh_complete_problem",
+      "kind": "chinese_complete",
+      "stage": "problem",
+      "variant": "default",
+      "requested_locale": "en",
+      "context_summary": null,
+      "message_meta": {},
+      "previous_answers": [],
+      "answer": "第一版优先服务学生创业团队，他们在准备访谈和 MVP 验证时不知道下一步该问什么。",
+      "question_detail": {
+        "question_id": "problem.target_user",
+        "stage": "problem",
+        "variant": "default",
+        "type_raw": "required",
+        "prompt": "Who is the primary user and what pain do they have?",
+        "standard_question": "Who is the primary user and what pain do they have?",
+        "validation_rule": "Must include primary user and pain.",
+        "schema_paths": ["problem.target_user", "problem.pain"],
+        "expected_key_points": ["Primary user", "Pain"]
+      },
+      "fallback_content": "Who is the primary user and what pain do they have?",
+      "stream_kind": "question",
+      "gate_result": {
+        "verdict": "pass",
+        "missing_points": [],
+        "critical_issues": [],
+        "followup_questions": [],
+        "help_examples": [],
+        "followup_message": "",
+        "score": {"clarity": 0.9, "completeness": 0.9, "evidence": 0.6},
+        "overall": 0.85
+      },
+      "extracted": {
+        "problem.target_user": "Student founder teams",
+        "problem.pain": "They do not know the next interview or MVP validation step"
+      },
+      "expected": {
+        "output_locale": "zh",
+        "locale_source": "latest_user_answer",
+        "fallback_source": "question_engine_fallback",
+        "display_format": "markdown",
+        "history_reference": false,
+        "gate_verdict": "pass",
+        "resolved_paths": ["problem.target_user", "problem.pain"],
+        "state_paths": ["problem.target_user", "problem.pain"],
+        "pending_paths": [],
+        "answer_text_contains": ["学生创业团队", "MVP 验证"],
+        "stage_status_unchanged": true
+      }
+    },
+    {
+      "id": "en_complete_problem",
+      "kind": "english_complete",
+      "stage": "problem",
+      "variant": "default",
+      "requested_locale": "zh",
+      "context_summary": "项目正在梳理早期创业验证流程。",
+      "message_meta": {},
+      "previous_answers": [],
+      "answer": "The first users are solo founders who need a clearer validation brief before they spend a week building the wrong MVP.",
+      "question_detail": {
+        "question_id": "problem.target_user",
+        "stage": "problem",
+        "variant": "default",
+        "type_raw": "required",
+        "prompt": "Who is the primary user and what pain do they have?",
+        "standard_question": "Who is the primary user and what pain do they have?",
+        "validation_rule": "Must include primary user and pain.",
+        "schema_paths": ["problem.target_user", "problem.pain"],
+        "expected_key_points": ["Primary user", "Pain"]
+      },
+      "fallback_content": "What current workaround do they use?",
+      "stream_kind": "question",
+      "gate_result": {
+        "verdict": "pass",
+        "missing_points": [],
+        "critical_issues": [],
+        "followup_questions": [],
+        "help_examples": [],
+        "followup_message": "",
+        "score": {"clarity": 0.9, "completeness": 0.88, "evidence": 0.55},
+        "overall": 0.82
+      },
+      "extracted": {
+        "problem.target_user": "Solo founders",
+        "problem.pain": "They need a clearer validation brief before building the wrong MVP"
+      },
+      "expected": {
+        "output_locale": "en",
+        "locale_source": "latest_user_answer",
+        "fallback_source": "question_engine_fallback",
+        "display_format": "markdown",
+        "history_reference": false,
+        "gate_verdict": "pass",
+        "resolved_paths": ["problem.target_user", "problem.pain"],
+        "state_paths": ["problem.target_user", "problem.pain"],
+        "pending_paths": [],
+        "answer_text_contains": ["solo founders", "validation brief"],
+        "stage_status_unchanged": true
+      }
+    },
+    {
+      "id": "too_short_needs_followup",
+      "kind": "too_short",
+      "stage": "problem",
+      "variant": "default",
+      "requested_locale": "en",
+      "context_summary": null,
+      "message_meta": {},
+      "previous_answers": [],
+      "answer": "AI tasks",
+      "question_detail": {
+        "question_id": "problem.one_line",
+        "stage": "problem",
+        "variant": "default",
+        "type_raw": "required",
+        "prompt": "Describe the problem in one clear sentence.",
+        "standard_question": "Describe the problem in one clear sentence.",
+        "validation_rule": "Must include user, situation, and pain.",
+        "schema_paths": ["problem.one_line", "problem.target_user"],
+        "expected_key_points": ["User", "Situation", "Pain"]
+      },
+      "fallback_content": "Please clarify the user, situation, and pain.",
+      "stream_kind": "followup",
+      "gate_result": {
+        "verdict": "needs_info",
+        "missing_points": ["User", "Situation", "Pain"],
+        "critical_issues": [],
+        "followup_questions": ["Who has the AI task problem, and when does it happen?"],
+        "help_examples": ["Freelancers lose time when client requests are vague."],
+        "followup_message": "Please clarify the user, situation, and pain.",
+        "score": {"clarity": 0.2, "completeness": 0.15, "evidence": 0.0},
+        "overall": 0.18
+      },
+      "extracted": {},
+      "expected": {
+        "output_locale": "en",
+        "locale_source": null,
+        "fallback_source": "answer_gate_fallback",
+        "display_format": "markdown",
+        "history_reference": false,
+        "gate_verdict": "needs_info",
+        "resolved_paths": [],
+        "state_paths": [],
+        "pending_paths": [],
+        "answer_text_contains": ["AI tasks"],
+        "stage_status_unchanged": true
+      }
+    },
+    {
+      "id": "skip_not_applicable",
+      "kind": "skipped",
+      "stage": "market",
+      "variant": "default",
+      "requested_locale": "en",
+      "context_summary": null,
+      "message_meta": {"answer_mode": "skip", "skip_reason": "Not relevant for this MVP"},
+      "previous_answers": [],
+      "answer": "Skip this for now.",
+      "question_detail": {
+        "question_id": "market.sales_cycle",
+        "stage": "market",
+        "variant": "default",
+        "type_raw": "optional",
+        "prompt": "What is the expected sales cycle?",
+        "standard_question": "What is the expected sales cycle?",
+        "validation_rule": "Provide a sales-cycle assumption or mark it unknown.",
+        "schema_paths": ["market_strategy.go_to_market.expected_sales_cycle_length"],
+        "expected_key_points": ["Sales-cycle assumption"]
+      },
+      "fallback_content": "What is the next market question?",
+      "stream_kind": "question",
+      "skip": {
+        "reason": "Not relevant for this MVP",
+        "resolution_status": "unknown"
+      },
+      "expected": {
+        "output_locale": "en",
+        "locale_source": null,
+        "fallback_source": "question_engine_fallback",
+        "display_format": "markdown",
+        "history_reference": false,
+        "gate_verdict": "pass",
+        "skipped": true,
+        "resolved_paths": [],
+        "state_paths": [],
+        "pending_paths": [],
+        "answer_text_contains": ["Skip this for now."],
+        "stage_status_unchanged": true
+      }
+    },
+    {
+      "id": "unknown_quick_action_context_locale",
+      "kind": "unknown",
+      "stage": "problem",
+      "variant": "default",
+      "requested_locale": "en",
+      "context_summary": "这个项目关注日程管理和 AI 拆解任务。",
+      "message_meta": {"answer_mode": "unknown", "skip_reason": "Need to validate with users"},
+      "previous_answers": [],
+      "answer": "I'm not sure",
+      "question_detail": {
+        "question_id": "problem.buyer_user",
+        "stage": "problem",
+        "variant": "default",
+        "type_raw": "required",
+        "prompt": "Who uses it and who pays?",
+        "standard_question": "Who uses it and who pays?",
+        "validation_rule": "Must distinguish user and buyer, or mark unknown.",
+        "schema_paths": ["problem.target_user", "market_strategy.business_model.buyer_user"],
+        "expected_key_points": ["User", "Buyer"]
+      },
+      "fallback_content": "请继续回答下一题。",
+      "stream_kind": "question",
+      "skip": {
+        "reason": "Need to validate with users",
+        "resolution_status": "unknown"
+      },
+      "expected": {
+        "output_locale": "zh",
+        "locale_source": "latest_user_answer",
+        "fallback_source": "question_engine_fallback",
+        "display_format": "markdown",
+        "history_reference": false,
+        "gate_verdict": "pass",
+        "skipped": true,
+        "resolved_paths": [],
+        "state_paths": [],
+        "pending_paths": [],
+        "answer_text_contains": ["I'm not sure"],
+        "stage_status_unchanged": true
+      }
+    },
+    {
+      "id": "history_reference_same_as_above",
+      "kind": "history_reference",
+      "stage": "problem",
+      "variant": "default",
+      "requested_locale": "en",
+      "context_summary": null,
+      "message_meta": {},
+      "previous_answers": ["We serve student founders who need a validation brief."],
+      "answer": "same as above",
+      "question_detail": {
+        "question_id": "problem.target_user",
+        "stage": "problem",
+        "variant": "default",
+        "type_raw": "required",
+        "prompt": "Who is the primary user?",
+        "standard_question": "Who is the primary user?",
+        "validation_rule": "Must include a primary user.",
+        "schema_paths": ["problem.target_user"],
+        "expected_key_points": ["Primary user"]
+      },
+      "fallback_content": "Please restate the primary user in one sentence.",
+      "stream_kind": "followup",
+      "gate_result": {
+        "verdict": "needs_info",
+        "missing_points": ["Primary user needs to be restated for this question"],
+        "critical_issues": [],
+        "followup_questions": ["Who is the primary user for this answer?"],
+        "help_examples": ["The primary user is student founders."],
+        "followup_message": "Please restate the primary user.",
+        "score": {"clarity": 0.3, "completeness": 0.2, "evidence": 0.0},
+        "overall": 0.25
+      },
+      "expected": {
+        "output_locale": "en",
+        "locale_source": null,
+        "fallback_source": "answer_gate_fallback",
+        "display_format": "markdown",
+        "history_reference": true,
+        "gate_verdict": "needs_info",
+        "resolved_paths": [],
+        "state_paths": [],
+        "pending_paths": [],
+        "answer_text_contains": ["student founders", "same as above"],
+        "stage_status_unchanged": true
+      }
+    },
+    {
+      "id": "off_topic_answer_rejected",
+      "kind": "off_topic",
+      "stage": "problem",
+      "variant": "default",
+      "requested_locale": "en",
+      "context_summary": null,
+      "message_meta": {},
+      "previous_answers": [],
+      "answer": "I like pizza and watched a movie yesterday.",
+      "question_detail": {
+        "question_id": "problem.one_line",
+        "stage": "problem",
+        "variant": "default",
+        "type_raw": "required",
+        "prompt": "Describe the startup problem.",
+        "standard_question": "Describe the startup problem.",
+        "validation_rule": "Must describe a startup problem.",
+        "schema_paths": ["problem.one_line"],
+        "expected_key_points": ["Startup problem"]
+      },
+      "fallback_content": "Please answer with the startup problem you want to solve.",
+      "stream_kind": "followup",
+      "gate_result": {
+        "verdict": "fail",
+        "missing_points": ["Startup problem"],
+        "critical_issues": ["The answer is off topic"],
+        "followup_questions": ["What startup problem are you solving?"],
+        "help_examples": ["Student founders waste time choosing the wrong validation step."],
+        "followup_message": "Please answer the startup problem question.",
+        "score": {"clarity": 0.1, "completeness": 0.0, "evidence": 0.0},
+        "overall": 0.05
+      },
+      "extracted": {"market_strategy.pricing": "$10/month"},
+      "expected": {
+        "output_locale": "en",
+        "locale_source": null,
+        "fallback_source": "answer_gate_fallback",
+        "display_format": "markdown",
+        "history_reference": false,
+        "gate_verdict": "needs_info",
+        "resolved_paths": [],
+        "state_paths": [],
+        "pending_paths": [],
+        "answer_text_contains": ["pizza", "movie"],
+        "stage_status_unchanged": true
+      }
+    },
+    {
+      "id": "complete_unstructured_soft_pass",
+      "kind": "complete_unstructured",
+      "stage": "problem",
+      "variant": "default",
+      "requested_locale": "en",
+      "context_summary": null,
+      "message_meta": {},
+      "previous_answers": [],
+      "answer": "A validation coach for early-stage founders who have many interview notes but cannot decide the next two-week test, so they keep building features without evidence.",
+      "question_detail": {
+        "question_id": "problem.one_line",
+        "stage": "problem",
+        "variant": "default",
+        "type_raw": "required",
+        "prompt": "Summarize the problem in one sentence.",
+        "standard_question": "Summarize the problem in one sentence.",
+        "validation_rule": "Must include user and pain.",
+        "schema_paths": ["problem.one_line"],
+        "expected_key_points": ["User", "Pain"]
+      },
+      "fallback_content": "What is the next validation risk?",
+      "stream_kind": "question",
+      "gate_result": {
+        "verdict": "needs_info",
+        "missing_points": ["Could be shorter"],
+        "critical_issues": [],
+        "followup_questions": ["Can you make it one sentence?"],
+        "help_examples": [],
+        "followup_message": "Please make it clearer.",
+        "score": {"clarity": 0.6, "completeness": 0.45, "evidence": 0.2},
+        "overall": 0.45
+      },
+      "extracted": {
+        "problem.one_line": "A validation coach for early-stage founders deciding their next two-week test"
+      },
+      "expected": {
+        "output_locale": "en",
+        "locale_source": null,
+        "fallback_source": "question_engine_fallback",
+        "display_format": "markdown",
+        "history_reference": false,
+        "gate_verdict": "pass",
+        "resolved_paths": ["problem.one_line"],
+        "state_paths": ["problem.one_line"],
+        "pending_paths": [],
+        "answer_text_contains": ["validation coach", "two-week test"],
+        "stage_status_unchanged": true
+      }
+    }
+  ]
+}
