@@ -18,6 +18,8 @@ without the private production repository, prompts, or question banks.
 [![CI](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml/badge.svg)](https://github.com/lupanpan1030/ideasense-ai-public/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
+**Languages:** English · [中文](README.zh-CN.md)
+
 ## Architecture at a Glance
 
 ```mermaid
