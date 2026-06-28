@@ -348,10 +348,10 @@ IdeaSense 以 `Desirability / Viability / Feasibility` 为主框架。
 
 尽管本文件已经按当前仓库重写，但和仓库现状相比，仍有几类“文档说得通、代码还没完全收口”的地方：
 
-1. 欢迎页正式素材体系还没完成。
-   - `frontend/components/marketing/HomePage.tsx` 仍在使用 `TEMP_ASSETS`
-   - 资源仍指向 `frontpage.mp4`、`homepageimage1.png`、`homeimage3.png`、`homeimage4.png`、`team/head1.png`
-   - `resources/welcome-page/` 目录目前基本只有 `.gitkeep`
+1. 公开快照中的欢迎页媒体仍是有意裁剪版本。
+   - 首页代码已经通过 `MARKETING_ASSETS` 指向 `/marketing/welcome/...` 素材路径
+   - 完整 MP4/WebM 官网录屏仍由线上产品和私有源保存，不作为 public snapshot 的完整媒体资产发布
+   - README 使用 `docs/assets/readme/ideasense-homepage-preview.gif` 作为轻量公开预览，避免重新引入旧 `frontpage.mp4`
 
 2. 营销 FAQ 仍有超前于可证实实现的承诺。
    - `Consultant Mode with a cyclic graph architecture`
@@ -378,10 +378,10 @@ IdeaSense 以 `Desirability / Viability / Feasibility` 为主框架。
    - 把没有足够实现证据的 FAQ 说法降级为更稳妥表述
    - 这是最直接的“文案与实现对齐”动作
 
-2. 完成欢迎页正式素材接入。
-   - 把 `resources/welcome-page/` 和 `frontend/public/marketing/welcome/` 真正填起来
-   - 替换 `HomePage.tsx` 里的 `TEMP_ASSETS`
-   - 这是当前最明显的产品表层未收口项
+2. 决定 public snapshot 的欢迎页媒体策略。
+   - 如果需要完整离线运行首页，需要显式导出 `/marketing/welcome/...` 的公开安全媒体
+   - 如果只作为作品集 case study，继续保留 README 的轻量 GIF 预览即可
+   - 不应重新使用旧 `frontpage.mp4` 作为当前官网素材
 
 3. 完成双语上线验证。
    - 跑 `docs/MULTILINGUAL_RELEASE_CHECKLIST.md`

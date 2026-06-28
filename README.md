@@ -33,7 +33,7 @@ Homepage motion preview from the public site:
 
 [![IdeaSense AI homepage product walkthrough](docs/assets/readme/ideasense-homepage-preview.gif)](https://www.ideasenseai.com)
 
-Original homepage video: [frontend/public/frontpage.mp4](frontend/public/frontpage.mp4) · No-login pages: [Sample report](https://www.ideasenseai.com/en/sample-report) · [Sample workspace](https://www.ideasenseai.com/en/sample)
+Live homepage: [ideasenseai.com](https://www.ideasenseai.com) · No-login pages: [Sample report](https://www.ideasenseai.com/en/sample-report) · [Sample workspace](https://www.ideasenseai.com/en/sample)
 
 ## Why This Project Exists
 
@@ -108,7 +108,7 @@ This repository is intended to show engineering judgment without publishing the 
 | --- | --- |
 | Next.js frontend and FastAPI backend apps | Production question banks and production prompt text |
 | PostgreSQL schema, migrations, synthetic seeds, and RLS roles | Private Master Spec and internal planning/audit docs |
-| Public API shape, architecture docs, and case-study docs | Real reports, dogfooding evidence, smoke artifacts |
+| Public API shape, architecture docs, and case-study docs | Private reports, non-public dogfooding evidence, smoke artifacts |
 | Synthetic prompt placeholders | Deployment secrets, provider keys, real users/data |
 | `resources/question_bank.example.yaml` shape-only example | Private production assessment methodology |
 

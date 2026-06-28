@@ -33,7 +33,7 @@ project -> staged interview -> context extraction -> stage gate confirmation -> 
 
 [![IdeaSense AI 官网首页产品演示](docs/assets/readme/ideasense-homepage-preview.gif)](https://www.ideasenseai.com/zh)
 
-原始首页视频素材：[frontend/public/frontpage.mp4](frontend/public/frontpage.mp4) · 无需登录页面：[示例报告](https://www.ideasenseai.com/zh/sample-report) · [示例工作区](https://www.ideasenseai.com/zh/sample)
+在线首页：[ideasenseai.com](https://www.ideasenseai.com/zh) · 无需登录页面：[示例报告](https://www.ideasenseai.com/zh/sample-report) · [示例工作区](https://www.ideasenseai.com/zh/sample)
 
 ## 为什么做这个项目
 
@@ -108,7 +108,7 @@ flowchart LR
 | --- | --- |
 | Next.js 前端和 FastAPI 后端应用 | 生产问题库和生产 prompt 文本 |
 | PostgreSQL schema、migrations、synthetic seeds 和 RLS roles | 私有 Master Spec 和内部规划/审计文档 |
-| 公开 API shape、架构文档和 case-study 文档 | 真实报告、dogfooding 证据、production smoke artifacts |
+| 公开 API shape、架构文档和 case-study 文档 | 私有报告、未公开 dogfooding 证据、production smoke artifacts |
 | 合成 prompt placeholders | 部署 secrets、provider keys、真实用户/数据 |
 | `resources/question_bank.example.yaml` shape-only example | 私有生产评估方法 |
 
