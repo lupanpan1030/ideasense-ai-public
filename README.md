@@ -29,11 +29,11 @@ This repository is a **public-safe snapshot** of the product. It includes the ap
 
 ## Product Preview
 
-Public no-login sample pages from the live product:
+Homepage motion preview from the public site:
 
-| Sample report | Sample workspace |
-| --- | --- |
-| [![IdeaSense AI sample report showing a DVF decision overview](docs/assets/readme/ideasense-sample-report.png)](https://www.ideasenseai.com/en/sample-report) | [![IdeaSense AI sample workspace showing staged project review flow](docs/assets/readme/ideasense-sample-workspace.png)](https://www.ideasenseai.com/en/sample) |
+[![IdeaSense AI homepage product walkthrough](docs/assets/readme/ideasense-homepage-preview.gif)](https://www.ideasenseai.com)
+
+Original homepage video: [frontend/public/frontpage.mp4](frontend/public/frontpage.mp4) · No-login pages: [Sample report](https://www.ideasenseai.com/en/sample-report) · [Sample workspace](https://www.ideasenseai.com/en/sample)
 
 ## Why This Project Exists
 

@@ -29,11 +29,11 @@ project -> staged interview -> context extraction -> stage gate confirmation -> 
 
 ## 产品预览
 
-来自在线产品的公开、无需登录 sample 页面：
+来自公开官网首页的动态预览：
 
-| 示例报告 | 示例工作区 |
-| --- | --- |
-| [![IdeaSense AI 示例报告，展示 DVF 决策概览](docs/assets/readme/ideasense-sample-report.png)](https://www.ideasenseai.com/zh/sample-report) | [![IdeaSense AI 示例工作区，展示分阶段项目评估流程](docs/assets/readme/ideasense-sample-workspace.png)](https://www.ideasenseai.com/zh/sample) |
+[![IdeaSense AI 官网首页产品演示](docs/assets/readme/ideasense-homepage-preview.gif)](https://www.ideasenseai.com/zh)
+
+原始首页视频素材：[frontend/public/frontpage.mp4](frontend/public/frontpage.mp4) · 无需登录页面：[示例报告](https://www.ideasenseai.com/zh/sample-report) · [示例工作区](https://www.ideasenseai.com/zh/sample)
 
 ## 为什么做这个项目
 
